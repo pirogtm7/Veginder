@@ -10,9 +10,14 @@ namespace Veginder.Business
 		private string fullName;
 		private string phoneNumber;
 		private string address;
-		private string email;
 		private string password;
 		private Cart cart;
-		private List<Order> orders = new List<Order>();
+		private List<Order> orders;
+
+		public Customer()
+        {
+			Console.WriteLine("A customer object was created");
+			Order order = new Order(5);
+        }
 	}
 }

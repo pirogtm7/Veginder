@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Veginder.Business;
 
 namespace Veginder
 {
@@ -14,6 +15,8 @@ namespace Veginder
 		public static void Main(string[] args)
 		{
 			CreateHostBuilder(args).Build().Run();
+
+			Customer customer = new Customer();
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>

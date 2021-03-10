@@ -7,5 +7,9 @@ namespace Veginder.Business
 {
 	public class Product
 	{
+		private int index;
+		private string name;
+		private decimal price;
+		private string type;
 	}
 }
