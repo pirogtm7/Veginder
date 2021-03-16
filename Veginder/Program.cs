@@ -14,9 +14,9 @@ namespace Veginder
 	{
 		public static void Main(string[] args)
 		{
-			CreateHostBuilder(args).Build().Run();
-
 			Customer customer = new Customer();
+
+			CreateHostBuilder(args).Build().Run();
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>

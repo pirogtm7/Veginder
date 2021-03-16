@@ -17,8 +17,7 @@ namespace Veginder.Controllers
 		public HomeController(ILogger<HomeController> logger)
 		{
 			_logger = logger;
-			Customer customer = new Customer();
-
+			//Customer customer = new Customer();
 
 		}
 

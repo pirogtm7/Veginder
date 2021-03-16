@@ -16,7 +16,7 @@ namespace Veginder.Business
 
 		public Customer()
         {
-			Console.WriteLine("A customer object was created");
+			System.Diagnostics.Debug.WriteLine("A customer object was created through default constructor.\n");
 			Order order = new Order(5);
         }
 	}
