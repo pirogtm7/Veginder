@@ -4,7 +4,9 @@ using System.Text;
 
 namespace DLL.Entities
 {
-	class UserEntity
+	public abstract class BaseEntity : IBaseEntity
 	{
+		public int Id { get; set; }
+
 	}
 }

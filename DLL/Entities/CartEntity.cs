@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DLL.Entities
 {
-	class CartEntity
+	public class CartEntity : BaseEntity
 	{
 	}
 }

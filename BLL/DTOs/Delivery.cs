@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLL.Entities
+namespace BLL.DTOs
 {
-	class ShopOwnerEntity
+	public class Delivery : BaseDTO
 	{
 	}
 }

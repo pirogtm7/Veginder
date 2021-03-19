@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DLL.Entities
 {
-	class DeliveryEntity
+	public class DeliveryEntity : BaseEntity
 	{
 	}
 }

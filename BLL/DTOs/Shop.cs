@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLL.Models
+namespace BLL.DTOs
 {
-	public class Shop
+	public class Shop : BaseDTO
 	{
 		private string name;
 		private string address;

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BLL.Models
+namespace BLL.DTOs
 {
-	public class Cart
+	public class Cart : BaseDTO
 	{
 		private List<Product> products = new List<Product>();
 		private decimal totalPrice;

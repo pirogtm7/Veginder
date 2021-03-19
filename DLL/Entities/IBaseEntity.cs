@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLL.Models
+namespace DLL.Entities
 {
-	public class User
+	public interface IBaseEntity
 	{
+		int Id { get; }
 	}
 }

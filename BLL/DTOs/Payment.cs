@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLL.Models
+namespace BLL.DTOs
 {
-	public class Payment
+	public class Payment : BaseDTO
 	{
-		private string cardNumber;
+		private string cardNumber4Digits;
 		private DateTime dueTime;
-		private int cvv;
-		private string ownerName;
 		private decimal totalPrice;
 
 	}
