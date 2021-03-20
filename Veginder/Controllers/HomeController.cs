@@ -25,7 +25,12 @@ namespace Veginder.Controllers
 			return View();
 		}
 
-		public IActionResult Privacy()
+		public IActionResult ExampleProduct()
+		{
+			return View();
+		}
+
+		public IActionResult ExampleShop()
 		{
 			return View();
 		}
