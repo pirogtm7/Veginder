@@ -20,8 +20,15 @@ grid.refreshSortData();
 
 grid.filter('[foo]');
 
+//If compareFunction(a, b) returns less than 0, leave a and b unchanged.
+//If compareFunction(a, b) returns 0, leave a and b unchanged with respect to each other, but sorted with respect to all different elements.Note: the ECMAScript standard only started guaranteeing this behavior in 2019, thus, older browsers may not respect this.
+//If compareFunction(a, b) returns greater than 0, sort b before a.
 grid.sort(function (itemA, itemB) {
     var aId = parseInt(itemA.getElement().getAttribute('data-foo'));
     var bId = parseInt(itemB.getElement().getAttribute('data-foo'));
+    if (bId < aId) {
+        return true;
+    }
+    return false;
     return bId - aId;
 });
