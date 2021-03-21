@@ -26,9 +26,6 @@ grid.filter('[foo]');
 grid.sort(function (itemA, itemB) {
     var aId = parseInt(itemA.getElement().getAttribute('data-foo'));
     var bId = parseInt(itemB.getElement().getAttribute('data-foo'));
-    if (bId < aId) {
-        return true;
-    }
-    return false;
+
     return bId - aId;
 });
