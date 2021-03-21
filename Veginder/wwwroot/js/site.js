@@ -7,17 +7,21 @@ var dragSortOptions = {
     threshold: 50
 };
 var grid = new Muuri('.grid', {
-    dragEnabled: true,
-    dragStartPredicate: function (item, event) {
-        // Prevent first item from being dragged. 
-        if (grid.getItems().indexOf(item) === 0) {
-            return false;
-        }
-        // For other items use the default drag start predicate.
-        return Muuri.ItemDrag.defaultStartPredicate(item, event);
-    },
-    dragSortPredicate: function (item) {
-        var result = Muuri.ItemDrag.defaultSortPredicate(item, dragSortOptions);
-        return result && result.index === 0 ? false : result;
-    }
+    dragEnabled: false,
+    
+    //sortData: {
+    //    foo: function (item, element) {
+    //        return parseFloat(element.getAttribute('data-foo'));
+    //    }
+    //}
+});
+// Refresh sort data whenever an item's data-foo or data-bar changes
+grid.refreshSortData();
+
+grid.filter('[foo]');
+
+grid.sort(function (itemA, itemB) {
+    var aId = parseInt(itemA.getElement().getAttribute('data-foo'));
+    var bId = parseInt(itemB.getElement().getAttribute('data-foo'));
+    return bId - aId;
 });
