@@ -8,21 +8,21 @@ namespace DLL.Entities
 	public class AddressEntity : BaseEntity
 	{
 		[Required]
-		private string fullName;
+		private string _fullName;
 		[Required]
-		private string street;
+		private string _street;
 		[Required]
-		private string city;
+		private string _city;
 		[Required]
-		private int zip;
-		public string FullName { get => fullName; set => fullName = value; }
-		public string Street { get => street; set => street = value; }
-		public string City { get => city; set => city = value; }
-		public int Zip { get => zip; set => zip = value; }
+		private int _zip;
+		public string FullName { get => _fullName; set => _fullName = value; }
+		public string Street { get => _street; set => _street = value; }
+		public string City { get => _city; set => _city = value; }
+		public int Zip { get => _zip; set => _zip = value; }
 
 		public AddressEntity(string fullName)
 		{
-			this.fullName = fullName;
+			_fullName = fullName;
 		}
 	}
 }

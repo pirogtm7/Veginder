@@ -9,42 +9,42 @@ namespace DLL.Repositories
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 	{
-		private readonly DbSet<TEntity> contextDbSet;
-		private readonly VeginderDbContext context;
+		private readonly DbSet<TEntity> _contextDbSet;
+		private readonly VeginderDbContext _context;
 
 		public Repository(VeginderDbContext context)
 		{
-			contextDbSet = context.Set<TEntity>();
-			this.context = context;
+			_contextDbSet = context.Set<TEntity>();
+			_context = context;
 		}
 
 		public IEnumerable<TEntity> GetAll()
 		{
-			return contextDbSet.ToList();
+			return _contextDbSet.ToList();
 		}
 
 		public void Add(TEntity entity)
 		{
-			contextDbSet.Add(entity);
+			_contextDbSet.Add(entity);
 		}
 
 		public TEntity Get(int id)
 		{
-			return contextDbSet.Find(id);
+			return _contextDbSet.Find(id);
 		}
 
 		public void Update(TEntity entity)
 		{
-			contextDbSet.Attach(entity);
-			context.Entry(entity).State = EntityState.Modified;
+			_contextDbSet.Attach(entity);
+			_context.Entry(entity).State = EntityState.Modified;
 		}
 
 		public void Delete(int id)
 		{
-			var tEntity = contextDbSet.Find(id);
+			TEntity tEntity = _contextDbSet.Find(id);
 			if (tEntity != null)
 			{
-				contextDbSet.Remove(tEntity);
+				_contextDbSet.Remove(tEntity);
 			}
 		}
 	}

@@ -46,6 +46,7 @@ namespace Veginder
 			services.AddSingleton(new MapperConfiguration(c => c.AddProfile(new BLL.Mapper())).CreateMapper());
 			services.AddTransient<IProductService, ProductService>();
 			services.AddTransient<IShopService, ShopService>();
+			services.AddTransient<ICategoryService, CategoryService>();
 
 			services.AddIdentity<UserEntity, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
 					.AddEntityFrameworkStores<VeginderDbContext>()

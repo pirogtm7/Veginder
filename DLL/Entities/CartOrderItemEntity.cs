@@ -8,23 +8,23 @@ namespace DLL.Entities
 	public class CartOrderItemEntity : BaseEntity
 	{
 		[Required]
-		private string productName;
+		private string _productName;
 		[Required]
-		private decimal price;
-		private string picturePath;
+		private decimal _price;
+		private string _picturePath;
 		[Required]
 		[Range(1, double.MaxValue, ErrorMessage = "Quantity must be at least 1")]
-		private int quantity;
+		private int _quantity;
 		[Required]
-		private ProductCategoryEntity category;
+		private ProductCategoryEntity _category;
 		[Required]
-		private ShopEntity shop;
+		private ShopEntity _shop;
 
-		public string ProductName { get => productName; set => productName = value; }
-		public decimal Price { get => price; set => price = value; }
-		public string PicturePath { get => picturePath; set => picturePath = value; }
-		public int Quantity { get => quantity; set => quantity = value; }
-		public ProductCategoryEntity Category { get => category; set => category = value; }
-		public ShopEntity Shop { get => shop; set => shop = value; }
+		public string ProductName { get => _productName; set => _productName = value; }
+		public decimal Price { get => _price; set => _price = value; }
+		public string PicturePath { get => _picturePath; set => _picturePath = value; }
+		public int Quantity { get => _quantity; set => _quantity = value; }
+		public ProductCategoryEntity Category { get => _category; set => _category = value; }
+		public ShopEntity Shop { get => _shop; set => _shop = value; }
 	}
 }

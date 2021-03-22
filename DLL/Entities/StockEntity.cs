@@ -8,15 +8,15 @@ namespace DLL.Entities
 	public class StockEntity : BaseEntity
 	{
 		[Required]
-		private ShopEntity shop;
+		private ShopEntity _shop;
 		[Required]
-		private ProductEntity product;
+		private ProductEntity _product;
 		[Required]
 		[Range(0, int.MaxValue)]
-		private int quantity;
+		private int _quantity;
 
-		public ShopEntity Shop { get => shop; set => shop = value; }
-		public ProductEntity Product { get => product; set => product = value; }
-		public int Quantity { get => quantity; set => quantity = value; }
+		public ShopEntity Shop { get => _shop; set => _shop = value; }
+		public ProductEntity Product { get => _product; set => _product = value; }
+		public int Quantity { get => _quantity; set => _quantity = value; }
 	}
 }

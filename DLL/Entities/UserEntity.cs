@@ -9,8 +9,8 @@ namespace DLL.Entities
 	public class UserEntity : IdentityUser
 	{
 		[Required]
-		private string fullName;
+		private string _fullName;
 
-		public string FullName { get => fullName; set => fullName = value; }
+		public string FullName { get => _fullName; set => _fullName = value; }
 	}
 }
