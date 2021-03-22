@@ -27,7 +27,9 @@ namespace Veginder.Controllers
 
 		public IActionResult ExampleProduct()
 		{
-			return View();
+			ShopModel shop = new ShopModel("shosho");
+
+			return View(shop);
 		}
 
 		public IActionResult ExampleShop()

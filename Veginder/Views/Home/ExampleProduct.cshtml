@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Veginder.Models.ShopModel
+
+@{
     ViewData["Title"] = "Example Product";
 }
 <h1>@ViewData["Title"]</h1>
@@ -8,69 +10,81 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
     <div class="grid">
-        <div class="item">
-            <div class="item-content">
-                1
+        @{var shop = new ShopModel("shop1");
+            foreach (string pr in shop.products)
+            {
+                <div class="item">
+                    <div class="item-content">
+                        @pr
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="grid">
+
+            <div class="item">
+                <div class="item-content">
+                    1
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-content">2</div>
+            </div>
+            <div class="item">
+                <div class="item-content">3</div>
+            </div>
+            <div class="item">
+                <div class="item-content">4</div>
+            </div>
+            <div class="item">
+                <div class="item-content">5</div>
+            </div>
+            <div class="item">
+                <div class="item-content">6</div>
+            </div>
+            <div class="item">
+                <div class="item-content">7</div>
+            </div>
+            <div class="item">
+                <div class="item-content">8</div>
+            </div>
+            <div class="item">
+                <div class="item-content">9</div>
+            </div>
+            <div class="item">
+                @*<div class="item-content">10</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">11</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">12</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">13</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">14</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">15</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">16</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">17</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">18</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">19</div>
+                    </div>
+                    <div class="item">
+                        <div class="item-content">20</div>*@
             </div>
         </div>
-        <div class="item">
-            <div class="item-content">2</div>
-        </div>
-        <div class="item">
-            <div class="item-content">3</div>
-        </div>
-        <div class="item">
-            <div class="item-content">4</div>
-        </div>
-        <div class="item">
-            <div class="item-content">5</div>
-        </div>
-        <div class="item">
-            <div class="item-content">6</div>
-        </div>
-        <div class="item">
-            <div class="item-content">7</div>
-        </div>
-        <div class="item">
-            <div class="item-content">8</div>
-        </div>
-        <div class="item">
-            <div class="item-content">9</div>
-        </div>
-        <div class="item">
-            <div class="item-content">10</div>
-        </div>
-        <div class="item">
-            <div class="item-content">11</div>
-        </div>
-        <div class="item">
-            <div class="item-content">12</div>
-        </div>
-        <div class="item">
-            <div class="item-content">13</div>
-        </div>
-        <div class="item">
-            <div class="item-content">14</div>
-        </div>
-        <div class="item">
-            <div class="item-content">15</div>
-        </div>
-        <div class="item">
-            <div class="item-content">16</div>
-        </div>
-        <div class="item">
-            <div class="item-content">17</div>
-        </div>
-        <div class="item">
-            <div class="item-content">18</div>
-        </div>
-        <div class="item">
-            <div class="item-content">19</div>
-        </div>
-        <div class="item">
-            <div class="item-content">20</div>
-        </div>
     </div>
-</div>
