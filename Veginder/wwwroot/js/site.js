@@ -15,20 +15,6 @@ var grid = new Muuri('.grid', {
     //    }
     //}
 });
-
-const carouselEl = document.querySelector('#carousel')
-const carousel = new bootstrap.Carousel(carouselEl, {
-    interval: 2000,
-    wrap: false
-})
-carousel.sort(function (itemA, itemB) {
-    var aId = parseInt(itemA.getElement().getAttribute('data-slide'));
-    var bId = parseInt(itemB.getElement().getAttribute('data-slide'));
-
-    return bId - aId;
-});
-
-
 // Refresh sort data whenever an item's data-foo or data-bar changes
 grid.refreshSortData();
 
