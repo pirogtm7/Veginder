@@ -6,19 +6,19 @@ namespace BLL.DTOs
 {
 	public class Order : BaseDTO
 	{
-		private string email;
-		private DateTime date = DateTime.Now;
-		private List<CartOrderItem> items;
+		private string _email;
+		private DateTime _date = DateTime.Now;
+		private List<CartOrderItem> _items;
 		//private Payment payment;
-		private string orderStatus;
-		private Address address;
-		private Cart cart;
+		private string _orderStatus;
+		private Address _address;
+		private Cart _cart;
 
-		public string Email { get => email; set => email = value; }
-		public DateTime Date { get => date; set => date = value; }
-		public List<CartOrderItem> Items { get => items; set => items = value; }
-		public string OrderStatus { get => orderStatus; set => orderStatus = value; }
-		public Address Address { get => address; set => address = value; }
-		public Cart Cart { get => cart; set => cart = value; }
+		public string Email { get => _email; set => _email = value; }
+		public DateTime Date { get => _date; set => _date = value; }
+		public List<CartOrderItem> Items { get => _items; set => _items = value; }
+		public string OrderStatus { get => _orderStatus; set => _orderStatus = value; }
+		public Address Address { get => _address; set => _address = value; }
+		public Cart Cart { get => _cart; set => _cart = value; }
 	}
 }

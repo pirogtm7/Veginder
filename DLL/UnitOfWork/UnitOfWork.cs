@@ -8,7 +8,7 @@ namespace DLL.UnitOfWork
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private readonly VeginderDbContext context;
+		private readonly VeginderDbContext _context;
 		public IRepository<AddressEntity> DeliveryRepository { get; }
 		public IRepository<CartEntity> CartRepository { get; }
 		public IRepository<OrderEntity> OrderRepository { get; }
@@ -25,7 +25,7 @@ namespace DLL.UnitOfWork
 			IRepository<CartOrderItemEntity> cartOrderItems,
 			IRepository<StockEntity> stocks, IRepository<ProductCategoryEntity> categories)
 		{
-			this.context = context;
+			_context = context;
 			DeliveryRepository = deliveries;
 			CartRepository = carts;
 			OrderRepository = orders;
@@ -38,7 +38,7 @@ namespace DLL.UnitOfWork
 
 		public void Save()
 		{
-			context.SaveChanges();
+			_context.SaveChanges();
 		}
 	}
 }

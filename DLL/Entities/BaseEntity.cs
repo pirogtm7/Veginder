@@ -7,8 +7,8 @@ namespace DLL.Entities
 {
 	public abstract class BaseEntity : IBaseEntity
 	{
+		private int _id;
 		[Required]
-		public int Id { get; set; }
-
+		public int Id { get => _id; set => _id = value; }
 	}
 }

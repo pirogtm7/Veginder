@@ -6,8 +6,8 @@ namespace BLL.DTOs
 {
 	public abstract class BaseDTO
 	{
-		private int id;
+		private int _id;
 
-		public int Id { get => id; set => id = value; }
+		public int Id { get => _id; set => _id = value; }
 	}
 }

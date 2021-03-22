@@ -8,17 +8,17 @@ namespace DLL.Entities
 	public class ShopEntity : BaseEntity
 	{
 		[Required]
-		private string name;
-		private string description;
-		private string picturePath;
-		private string address;
+		private string _name;
+		private string _description;
+		private string _picturePath;
+		private string _address;
 		//[Required]
 		//private List<ProductEntity> productEntities = new List<ProductEntity>();
 
-		public string Name { get => name; set => name = value; }
-		public string Description { get => description; set => description = value; }
-		public string Address { get => address; set => address = value; }
+		public string Name { get => _name; set => _name = value; }
+		public string Description { get => _description; set => _description = value; }
+		public string Address { get => _address; set => _address = value; }
 		//public List<ProductEntity> ProductEntities { get => productEntities; set => productEntities = value; }
-		public string PicturePath { get => picturePath; set => picturePath = value; }
+		public string PicturePath { get => _picturePath; set => _picturePath = value; }
 	}
 }

@@ -6,12 +6,12 @@ namespace BLL.DTOs
 {
 	public class Stock
 	{
-		private Shop shop;
-		private Product product;
-		private int quantity;
+		private Shop _shop;
+		private Product _product;
+		private int _quantity;
 
-		public Shop Shop { get => shop; set => shop = value; }
-		public Product Product { get => product; set => product = value; }
-		public int Quantity { get => quantity; set => quantity = value; }
+		public Shop Shop { get => _shop; set =>  _shop = value; }
+		public Product Product { get => _product; set => _product = value; }
+		public int Quantity { get => _quantity; set => _quantity = value; }
 	}
 }

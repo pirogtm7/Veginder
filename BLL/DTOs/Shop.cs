@@ -6,16 +6,14 @@ namespace BLL.DTOs
 {
 	public class Shop : BaseDTO
 	{
-		private string name;
-		private string description;
-		private string picturePath;
-		private string address;
-		//private List<Product> products;
+		private string _name;
+		private string _description;
+		private string _picturePath;
+		private string _address;
 
-		public string Name { get => name; set => name = value; }
-		public string Description { get => description; set => description = value; }
-		public string Address { get => address; set => address = value; }
-		//public List<Product> Products { get => products; set => products = value; }
-		public string PicturePath { get => picturePath; set => picturePath = value; }
+		public string Name { get => _name; set => _name = value; }
+		public string Description { get => _description; set => _description = value; }
+		public string Address { get => _address; set => _address = value; }
+		public string PicturePath { get => _picturePath; set => _picturePath = value; }
 	}
 }

@@ -8,18 +8,18 @@ namespace DLL.Entities
 	public class ProductEntity : BaseEntity
 	{
 		[Required]
-		private string name;
-		private string description;
+		private string _name;
+		private string _description;
 		[Required]
-		private decimal price;
-		private string picturePath;
+		private decimal _price;
+		private string _picturePath;
 		[Required]
-		private ProductCategoryEntity category;
+		private ProductCategoryEntity _category;
 
-		public string Name { get => name; set => name = value; }
-		public string Description { get => description; set => description = value; }
-		public decimal Price { get => price; set => price = value; }
-		public string PicturePath { get => picturePath; set => picturePath = value; }
-		public ProductCategoryEntity Category { get => category; set => category = value; }
+		public string Name { get => _name; set => _name = value; }
+		public string Description { get => _description; set => _description = value; }
+		public decimal Price { get => _price; set => _price = value; }
+		public string PicturePath { get => _picturePath; set => _picturePath = value; }
+		public ProductCategoryEntity Category { get => _category; set => _category = value; }
 	}
 }

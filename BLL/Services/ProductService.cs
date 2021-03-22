@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
 using BLL.Interfaces;
+using DLL.Entities;
 using DLL.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,19 @@ namespace BLL.Services
 {
 	public class ProductService : IProductService
 	{
-		private readonly IUnitOfWork UnitOfWork;
-		IMapper mapper;
+		private readonly IUnitOfWork _unitOfWork;
+		IMapper _mapper;
 
 		public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
 		{
-			UnitOfWork = unitOfWork;
-			this.mapper = mapper;
+			_unitOfWork = unitOfWork;
+			_mapper = mapper;
 		}
 
 		public IEnumerable<Product> GetAllProducts()
 		{
-			var productEntities = UnitOfWork.ProductRepository.GetAll();
-			var products = mapper.Map<IEnumerable<Product>>(productEntities);
+			IEnumerable<ProductEntity> productEntities = _unitOfWork.ProductRepository.GetAll();
+			IEnumerable<Product> products = _mapper.Map<IEnumerable<Product>>(productEntities);
 			return products;
 		}
 	}

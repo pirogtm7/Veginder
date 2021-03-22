@@ -8,11 +8,13 @@ namespace Veginder.Models
 {
 	public class HomePageModel
 	{
-		public List<Shop> shops;
+		private List<Shop> _shops;
+		public List<Shop> Shops { get => _shops; set => _shops = value; }
 
 		public HomePageModel(List<Shop> shops)
 		{
-			this.shops = shops;
+			_shops = shops;
 		}
+
 	}
 }
