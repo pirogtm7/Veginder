@@ -20,7 +20,7 @@ namespace BLL.Services
 			_mapper = mapper;
 		}
 
-		public IEnumerable<ProductCategory> GetAllCategoriesNames()
+		public IEnumerable<ProductCategory> GetAllCategories()
 		{
 			IEnumerable<ProductCategoryEntity> categEntities = _unitOfWork.ProductCategoryRepository.GetAll();
 			return _mapper.Map<IEnumerable<ProductCategory>>(categEntities);

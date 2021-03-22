@@ -15,18 +15,21 @@ namespace Veginder.Controllers
 		private readonly ILogger<HomeController> _logger;
 		IProductService _productService;
 		IShopService _shopService;
+		ICategoryService _categoryService;
 
 		public HomeController(ILogger<HomeController> logger, IProductService productService,
-			IShopService shopService)
+			IShopService shopService, ICategoryService categoryService)
 		{
 			_logger = logger;
 			_productService = productService;
 			_shopService = shopService;
+			_categoryService = categoryService;
 		}
 
 		public IActionResult Index()
 		{
-			HomePageModel model = new HomePageModel(_shopService.GetAllShops().ToList());
+			HomePageModel model = new HomePageModel(_shopService.GetAllShops().ToList(),
+				_categoryService.GetAllCategories().ToList());
 			return View(model);
 		}
 
