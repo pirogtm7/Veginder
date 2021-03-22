@@ -9,7 +9,6 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
     <section className="hero">
         <div className="hero-body">
             <div className="container">
@@ -22,6 +21,7 @@
             </div>
         </div>
     </section>
+
     @* взято с
         https://soshace.com/filtering-sorting-and-pagination-advanced-filtering-with-react-and-redux/ *@
     <section class='section'>
@@ -51,22 +51,34 @@
                         }
                     </script>
                 </div>
-            </div>                      
-                
+            </div>
+
         </div>
     </section>
 
     <div class="grid">
-        @foreach (var shop in Model.shops)
+        @foreach (var shop in Model.Shops)
         {
             <div class="item" foo data-shop="1">
-                <div class="item-content">                    
-                        <b>Name: </b>
-                        @shop.Name;
-                        <b>Description: </b>
-                        @shop.Description;
-                        <b>Address: </b>
-                        @shop.Address;
+                <div class="item-content container">
+                        <div class="row" style="height: 150px">
+                            <img src="@shop.PicturePath" class="rounded">
+                        </div>                       
+                        <div class="row" style="height: auto">
+                            <h3>
+                                Name: @shop.Name;
+                            </h3>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h4>
+                                Address: @shop.Address;
+                            </h4>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h4>
+                                Description: @shop.Description;
+                            </h4>
+                        </div>
                 </div>
             </div>
         }
@@ -77,3 +89,4 @@
 
         </div>
     </div>
+</div>
