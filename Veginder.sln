@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Veginder", "Veginder\Veginder.csproj", "{FBD2740C-093E-46A7-841C-B03887FF6C50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E35D175E-68F1-4DD1-A174-1CCC6FA71ECA} = {E35D175E-68F1-4DD1-A174-1CCC6FA71ECA}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{E35D175E-68F1-4DD1-A174-1CCC6FA71ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{E35D175E-68F1-4DD1-A174-1CCC6FA71ECA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E213818-C903-4AA9-AD4E-C4BBB4386669} = {9E213818-C903-4AA9-AD4E-C4BBB4386669}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL", "DLL\DLL.csproj", "{9E213818-C903-4AA9-AD4E-C4BBB4386669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLL", "DLL\DLL.csproj", "{9E213818-C903-4AA9-AD4E-C4BBB4386669}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BLL.DTOs
+namespace BLL.Services
 {
-	public class Delivery : BaseDTO
+	class PaymentService
 	{
 	}
 }

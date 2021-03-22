@@ -5,7 +5,10 @@ namespace BLL.DTOs
 {
 	public class Cart : BaseDTO
 	{
-		private List<Product> products = new List<Product>();
-		private decimal totalPrice;
+		private List<CartOrderItem> items;
+		//public string PaymentIntentId { get; set; }
+
+		public List<CartOrderItem> Items { get => items; set => items = value; }
+
 	}
 }

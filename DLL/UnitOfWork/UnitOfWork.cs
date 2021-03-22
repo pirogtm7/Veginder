@@ -9,28 +9,31 @@ namespace DLL.UnitOfWork
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly VeginderDbContext context;
-		public IRepository<CustomerEntity> CustomerRepository { get; }
-		public IRepository<DeliveryEntity> DeliveryRepository { get; }
+		public IRepository<AddressEntity> DeliveryRepository { get; }
 		public IRepository<CartEntity> CartRepository { get; }
 		public IRepository<OrderEntity> OrderRepository { get; }
-		public IRepository<PaymentEntity> PaymentRepository { get; }
+		public IRepository<ProductCategoryEntity> ProductCategoryRepository { get; }
 		public IRepository<ProductEntity> ProductRepository { get; }
 		public IRepository<ShopEntity> ShopRepository { get; }
+		public IRepository<CartOrderItemEntity> CartOrderItemRepository { get; }
+		public IRepository<StockEntity> StockRepository { get; }
 
 
-		public UnitOfWork(VeginderDbContext context, IRepository<CustomerEntity> customers,
-			IRepository<DeliveryEntity> deliveries,	IRepository<CartEntity> carts,
-			IRepository<OrderEntity> orders, IRepository<PaymentEntity> payments,
-			IRepository<ProductEntity> products, IRepository<ShopEntity> shops)
+		public UnitOfWork(VeginderDbContext context, IRepository<AddressEntity> deliveries,	
+			IRepository<CartEntity> carts, IRepository<OrderEntity> orders, 
+			IRepository<ProductEntity> products, IRepository<ShopEntity> shops,
+			IRepository<CartOrderItemEntity> cartOrderItems,
+			IRepository<StockEntity> stocks, IRepository<ProductCategoryEntity> categories)
 		{
 			this.context = context;
-			CustomerRepository = customers;
 			DeliveryRepository = deliveries;
 			CartRepository = carts;
 			OrderRepository = orders;
-			PaymentRepository = payments;
 			ProductRepository = products;
 			ShopRepository = shops;
+			CartOrderItemRepository = cartOrderItems;
+			StockRepository = stocks;
+			ProductCategoryRepository = categories;
 		}
 
 		public void Save()

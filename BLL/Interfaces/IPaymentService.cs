@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLL.Entities
+namespace BLL.Interfaces
 {
-	public class DeliveryEntity : BaseEntity
+	public interface IPaymentService
 	{
 	}
 }
