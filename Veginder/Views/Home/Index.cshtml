@@ -10,29 +10,42 @@
 <h1>Shops</h1>
 <div id="carouselShops" class="carousel slide" data-bs-ride="carousel">
 	<div class="carousel-indicators">
-		<button type="button" data-bs-target="#carouselShops" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		@for (int i = 1; i < Model.Shops.Count; i++)
+		@for (int i = 0; i < Model.Shops.Count; i++)
 		{
-			<button type="button" data-bs-target="#carouselShops" data-bs-slide-to="@i" aria-label="Slide @(i + 1)"></button>
+			if (i == 0)
+			{
+				<button type="button" data-bs-target="#carouselShops" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @(i + 1)"></button>
+			}
+			else
+			{
+				<button type="button" data-bs-target="#carouselShops" data-bs-slide-to="@i" aria-label="Slide @(i + 1)"></button>
+			}
 		}
 	</div>
 	<div class="carousel-inner">
-		<div class="carousel-item active">
-			<div class="container d-block w-100r">
-				<div class="row">
-					<img src="@Model.Shops[0].PicturePath">
-				</div>
-			</div>
-		</div>
-		@for (int i = 1; i < Model.Shops.Count; i++)
+
+		@for (int i = 0; i < Model.Shops.Count; i++)
 		{
-			<div class="carousel-item">
-				<div class="container d-block w-100r">
-					<div class="row">
-						<img src="@Model.Shops[i].PicturePath">
+			if (i == 0)
+			{
+				<div class="carousel-item active">
+					<div class="container d-block w-100r">
+						<div class="row">
+							<img src="@Model.Shops[i].PicturePath"  style="padding: 0px 0px 0px 0px;">
+						</div>
 					</div>
 				</div>
-			</div>
+			}
+			else
+			{
+				<div class="carousel-item">
+					<div class="container d-block w-100r">
+						<div class="row">
+							<img src="@Model.Shops[i].PicturePath" style="padding: 0px 0px 0px 0px;">
+						</div>
+					</div>
+				</div>
+			}
 		}
 	</div>
 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselShops" data-bs-slide="prev">
@@ -46,81 +59,91 @@
 </div>
 
 <div class="row" style="height: 50px;"></div>
+
 <h1>Categories</h1>
 <div id="carouselProductCategories" class="carousel slide" data-bs-ride="carousel">
 	<div class="carousel-indicators">
-		<button type="button" data-bs-target="#carouselProductCategories" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		@for (int i = 1; i < Model.Categories.Count / 4; i++)
+		@for (int i = 0; i < Model.Categories.Count / 4; i++)
 		{
-			<button type="button" data-bs-target="#carouselProductCategories" data-bs-slide-to="@i" aria-label="Slide @(i + 1)"></button>
+			if (i == 0)
+			{
+				<button type="button" data-bs-target="#carouselProductCategories" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @(i + 1)"></button>
+			}
+			else
+			{
+				<button type="button" data-bs-target="#carouselProductCategories" data-bs-slide-to="@i" aria-label="Slide @(i + 1)"></button>
+			}
 		}
 	</div>
 
 	<div class="carousel-inner">
-
-		<div class="carousel-item active">
-			<div class="container d-block w-100r">
-				<div class="row" style="height: 50px">
-					<div class="col">
-						<h1>
-							@Model.Categories[0].Name
-						</h1>
-					</div>
-					<div class="col" style="height: 50px">
-						<h1>
-							@Model.Categories[1].Name
-						</h1>
-					</div>
-				</div>
-				<div class="row" style="height: 50px">
-					<div class="col">
-						<h1>
-							@Model.Categories[2].Name
-						</h1>
-					</div>
-					<div class="col" style="height: 50px">
-						<h1>
-							@Model.Categories[3].Name
-						</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		@{int j = 4;}
-		@for (int i = 1; i < Model.Categories.Count / 4; i++)
+		@{int j = 0;}
+		@for (int i = 0; i < Model.Categories.Count / 4; i++)
 		{
-			<div class="carousel-item">
-				<div class="container d-block w-100r">
-					<div class="row">
-						<div class="col">
-							<h1>
-								@Model.Categories[j].Name
-							</h1>
+			if (i == 0)
+			{
+				<div class="carousel-item active">
+					<div class="container d-block w-100r">
+						<div class="row" style="height: 250px">
+							<div class="col" style="background-color: #EF9710;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j].Name
+								</h1>
+							</div>
+							<div class="col" style="background-color: #609356;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j + 1].Name
+								</h1>
+							</div>
 						</div>
-						<div class="col">
-							<h1>
-								@Model.Categories[j + 1].Name
-							</h1>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<h1>
-								@Model.Categories[j + 2].Name
-							</h1>
-						</div>
-						<div class="col">
-							<h1>
-								@Model.Categories[j + 3].Name
-							</h1>
+						<div class="row" style="height: 250px">
+							<div class="col" style="background-color: #F95504;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j + 2].Name
+								</h1>
+							</div>
+							<div class="col" style="background-color: #BC3D9E;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j + 3].Name
+								</h1>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			}
+			else
+			{
+				<div class="carousel-item">
+					<div class="container d-block w-100r">
+						<div class="row" style="height: 250px">
+							<div class="col" style="background-color: #BC3D9E;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j].Name
+								</h1>
+							</div>
+							<div class="col" style="background-color: #EF9710;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j + 1].Name
+								</h1>
+							</div>
+						</div>
+						<div class="row" style="height: 250px">
+							<div class="col" style="background-color: #609356;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j + 2].Name
+								</h1>
+							</div>
+							<div class="col" style="background-color: #F95504;">
+								<h1 style="margin-top: 100px">
+									@Model.Categories[j + 3].Name
+								</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
 			j += 4;
 		}
-
 	</div>
 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselProductCategories" data-bs-slide="prev">
 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
