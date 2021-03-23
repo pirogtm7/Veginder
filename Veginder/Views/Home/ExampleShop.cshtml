@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Veginder.Models.HomePageModel
+@{
     ViewData["Title"] = "Example Shop";
 }
 <h1>@ViewData["Title"]</h1>
@@ -8,70 +9,84 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <section className="hero">
+        <div className="hero-body">
+            <div className="container">
+                <h1 className="title">
+                    Pagination, Filtering and Sorting with React
+                </h1>
+                <h2 className="subtitle">
+                    A detailed guide
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    @* взято с
+        https://soshace.com/filtering-sorting-and-pagination-advanced-filtering-with-react-and-redux/ *@
+    <section class='section'>
+        <div class='container'>
+            <div>
+                <div class="field is-grouped" style={{ alignItems: "center" }}>
+                    <div class="control">
+                        <div class="select">
+                            <select>
+                                <option value="" disabled selected>Sort by</option>
+                                <option>Price - Lowest to Highest</option>
+                                <option>Price - Highest to Lowest</option>
+                                <option>Alphabet - A-Z</option>
+                                <option>Alphabet - Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className='control' style={{minWidth: "300px"}}>
+                        <input type="text" id="myInput" oninput="myFunction()" />
+                    </div>
+
+                    <script>
+                        function myFunction() {
+                            var x = document.getElementById("myInput").value;
+                            document.getElementById("demo").innerHTML = "You wrote: " + x;
+                        }
+                    </script>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <div class="grid">
-
-        <div class="item" foo data-foo="1">
+        @foreach (var shop in Model.Shops)
+        {
+            <div class="item" foo data-shop="1">
+                <div class="item-content container">
+                        <div class="row" style="height: 150px">
+                            <img src="@shop.PicturePath" class="rounded">
+                        </div>                       
+                        <div class="row" style="height: auto">
+                            <h3>
+                                Name: @shop.Name;
+                            </h3>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h4>
+                                Address: @shop.Address;
+                            </h4>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h4>
+                                Description: @shop.Description;
+                            </h4>
+                        </div>
+                </div>
+            </div>
+        }
+        <div class="item" foo data-shop="1">
             <div class="item-content">
                 1
             </div>
-        </div>
-        <div class="item" foo data-foo="20">
-            <div class="item-content">2</div>
-        </div>
-        <div class="item" foo data-foo="30">
-            <div class="item-content">3</div>
-        </div>
-        <div class="item" foo data-foo="31">
-            <div class="item-content">4</div>
-        </div>
-        <div class="item" foo data-foo="31">
-            <div class="item-content">5</div>
-        </div>
-        <div class="item">
-            <div class="item-content">6</div>
-        </div>
-        <div class="item">
-            <div class="item-content">7</div>
-        </div>
-        <div class="item">
-            <div class="item-content">8</div>
-        </div>
-        <div class="item">
-            <div class="item-content">9</div>
-        </div>
-        <div class="item">
-            <div class="item-content">10</div>
-        </div>
-        <div class="item">
-            <div class="item-content">11</div>
-        </div>
-        <div class="item">
-            <div class="item-content">12</div>
-        </div>
-        <div class="item">
-            <div class="item-content">13</div>
-        </div>
-        <div class="item">
-            <div class="item-content">14</div>
-        </div>
-        <div class="item">
-            <div class="item-content">15</div>
-        </div>
-        <div class="item">
-            <div class="item-content">16</div>
-        </div>
-        <div class="item">
-            <div class="item-content">17</div>
-        </div>
-        <div class="item">
-            <div class="item-content">18</div>
-        </div>
-        <div class="item">
-            <div class="item-content">19</div>
-        </div>
-        <div class="item">
-            <div class="item-content">20</div>
+
         </div>
     </div>
 </div>

@@ -40,7 +40,9 @@ namespace Veginder.Controllers
 
 		public IActionResult ExampleShop()
 		{
-			return View();
+			var model = new HomePageModel(_shopService.GetAllShops().ToList(),
+				_categoryService.GetAllCategories().ToList());
+			return View(model);
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
