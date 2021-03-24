@@ -1,9 +1,9 @@
 ﻿.carousel-item{
     height: 500px;
     width: 100%;
-    background-color: ghostwhite;
+    background-color: white;
 }
 
-.col{
+.col {
     text-align: center;
 }

@@ -13,19 +13,18 @@ namespace Veginder.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-		IProductService _productService;
 		IShopService _shopService;
 		ICategoryService _categoryService;
 
-		public HomeController(ILogger<HomeController> logger, IProductService productService,
+		public HomeController(ILogger<HomeController> logger,
 			IShopService shopService, ICategoryService categoryService)
 		{
 			_logger = logger;
-			_productService = productService;
 			_shopService = shopService;
 			_categoryService = categoryService;
 		}
 
+		[HttpGet]
 		public IActionResult Index()
 		{
 			HomePageModel model = new HomePageModel(_shopService.GetAllShops().ToList(),

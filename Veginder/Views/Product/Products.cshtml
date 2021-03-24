@@ -1,0 +1,14 @@
+﻿@using BLL.DTOs
+@model Veginder.Models.ProductsModel
+
+@{ 
+	ViewData["Title"] = "Home Page";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach( Product p in Model.Products)
+{
+	<img src="@p.PicturePath">
+	<h6>@p.Name</h6>
+}
