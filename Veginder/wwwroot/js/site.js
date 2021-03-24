@@ -1,6 +1,20 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+const gridElement = document.querySelector('.grid');
+const filterField = document.querySelector('.grid-control-field.filter-field');
+const searchField = document.querySelector('.grid-control-field.search-field');
+const sortField = document.querySelector('.grid-control-field.sort-field');
+const layoutField = document.querySelector('.grid-control-field.layout-field');
+const addButton = document.querySelector('.grid-button.add-more-items');
+const itemTemplate = document.querySelector('.grid-item-template');
+const characters = 'abcdefghijklmnopqrstuvwxyz';
+const colors = ['red', 'blue', 'green'];
+
+let sortFieldValue;
+let searchFieldValue;
+
+
 // Write your JavaScript code.
 var dragSortOptions = {
     action: 'swap',
@@ -15,6 +29,41 @@ var grid = new Muuri('.grid', {
     //    }
     //}
 });
+
+function initDemo() {
+    // Reset field values.
+    searchField.value = '';
+    [sortField, filterField, layoutField].forEach((field) => {
+        field.value = field.querySelectorAll('option')[0].value;
+    });
+
+    // Set inital search query, active filter, active sort value and active layout.
+    searchFieldValue = searchField.value.toLowerCase();
+    sortFieldValue = sortField.value;
+
+
+    // Search field binding.
+    searchField.addEventListener('keyup', function () {
+        var newSearch = searchField.value.toLowerCase();
+        if (searchFieldValue !== newSearch) {
+            searchFieldValue = newSearch;
+            filter();
+        }
+    });
+
+    // Filter, sort and layout bindings.
+    filterField.addEventListener('change', filter);
+    sortField.addEventListener('change', sort);
+    layoutField.addEventListener('change', updateLayout);
+
+    // Add/remove items bindings.
+    addButton.addEventListener('click', addItems);
+    gridElement.addEventListener('click', (e) => {
+        if (e.target.matches('.grid-card-remove')) {
+            removeItem(grid.getItem(e.target.closest('.grid-item')));
+        }
+    });
+}
 // Refresh sort data whenever an item's data-foo or data-bar changes
 grid.refreshSortData();
 
@@ -29,3 +78,36 @@ grid.sort(function (itemA, itemB) {
 
     return bId - aId;
 });
+
+function filter(onFinish = null) {
+    const filterFieldValue = filterField.value;
+    grid.filter(
+        (item) => {
+            const element = item.getElement();
+            const isSearchMatch =
+                !searchFieldValue ||
+                (element.getAttribute('data-title') || '').toLowerCase().indexOf(searchFieldValue) > -1;
+            const isFilterMatch =
+                !filterFieldValue || filterFieldValue === element.getAttribute('data-color');
+            return isSearchMatch && isFilterMatch;
+        },
+        { onFinish: onFinish }
+    );
+
+}
+
+function sort() {
+    var currentSort = sortField.value;
+    if (sortFieldValue === currentSort) return;
+
+    // Sort the items.
+    grid.sort(
+        currentSort === 'title' ? 'title' : currentSort === 'color' ? 'color title' : dragOrder
+    );
+
+    // Update active sort value.
+    sortFieldValue = currentSort;
+}
+
+
+initDemo();

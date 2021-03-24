@@ -29,8 +29,8 @@
             <div>
                 <div class="field is-grouped" style={{ alignItems: "center" }}>
                     <div class="control">
-                        <div class="select">
-                            <select>
+                        <div class="grid-control filter">
+                            <select class="grid-control-field filter-field form-control">
                                 <option value="" disabled selected>Sort by</option>
                                 <option>Price - Lowest to Highest</option>
                                 <option>Price - Highest to Lowest</option>
@@ -38,19 +38,12 @@
                                 <option>Alphabet - Z-A</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div className='control' style={{minWidth: "300px"}}>
-                        <input type="text" id="myInput" oninput="myFunction()" />
-                    </div>
+                        <div className='control' style={{minWidth: "300px"}}>
+                            <input class="grid-control-field search-field form-control" type="text" name="search" placeholder="Search...">
+                        </div>
 
-                    <script>
-                        function myFunction() {
-                            var x = document.getElementById("myInput").value;
-                            document.getElementById("demo").innerHTML = "You wrote: " + x;
-                        }
-                    </script>
-                </div>
+                    </div>
             </div>
 
         </div>
@@ -60,7 +53,7 @@
         @foreach (var shop in Model.Shops)
         {
             <div class="item" foo data-shop="1">
-                <div class="item-content container">
+                <div class="item-content container" data-title ="shop">
                         <div class="row" style="height: 150px">
                             <img src="@shop.PicturePath" class="rounded">
                         </div>                       
