@@ -13,7 +13,7 @@
 		@for (int i = 0; i < Model.Shops.Count; i++)
 		{
 			if (i == 0)
-			{
+			{				
 				<button type="button" data-bs-target="#carouselShops" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @(i + 1)"></button>
 			}
 			else
@@ -31,7 +31,9 @@
 				<div class="carousel-item active">
 					<div class="container d-block w-100r">
 						<div class="row">
-							<img src="@Model.Shops[i].PicturePath"  style="padding: 0px 0px 0px 0px;">
+							<a asp-controller="Product" asp-action="Products" asp-route-shopId="@i" style="padding: 0px 0px 0px 0px;">
+								<img src="@Model.Shops[i].PicturePath" style="padding: 0px 0px 0px 0px; width:100%">
+							</a>
 						</div>
 					</div>
 				</div>
@@ -41,7 +43,9 @@
 				<div class="carousel-item">
 					<div class="container d-block w-100r">
 						<div class="row">
-							<img src="@Model.Shops[i].PicturePath" style="padding: 0px 0px 0px 0px;">
+							<a asp-controller="Product" asp-action="Products" asp-route-shopId="@i" style="padding: 0px 0px 0px 0px;">
+								<img src="@Model.Shops[i].PicturePath" style="padding: 0px 0px 0px 0px; width:100%">
+							</a>
 						</div>
 					</div>
 				</div>
@@ -85,27 +89,35 @@
 				<div class="carousel-item active">
 					<div class="container d-block w-100r">
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #EF9710;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j].Name
-								</h1>
+							<div class="col" style="background-color: #609356; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@j" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j].Name
+									</h1>
+								</a>
 							</div>
-							<div class="col" style="background-color: #609356;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j + 1].Name
-								</h1>
+							<div class="col" style="background-color: #F95504; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+1)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j + 1].Name
+									</h1>
+								</a>
 							</div>
 						</div>
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #F95504;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j + 2].Name
-								</h1>
+							<div class="col" style="background-color: #BC3D9E; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+2)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j + 2].Name
+									</h1>
+								</a>
 							</div>
-							<div class="col" style="background-color: #BC3D9E;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j + 3].Name
-								</h1>
+							<div class="col" style="background-color: #EF9710; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+3)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j + 3].Name
+									</h1>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -116,27 +128,35 @@
 				<div class="carousel-item">
 					<div class="container d-block w-100r">
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #BC3D9E;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j].Name
-								</h1>
+							<div class="col" style="background-color: #609356; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@j" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j].Name
+									</h1>
+								</a>
 							</div>
-							<div class="col" style="background-color: #EF9710;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j + 1].Name
-								</h1>
+							<div class="col" style="background-color: #F95504; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+1)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j + 1].Name
+									</h1>
+								</a>
 							</div>
 						</div>
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #609356;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j + 2].Name
-								</h1>
+							<div class="col" style="background-color: #BC3D9E; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+2)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j + 2].Name
+									</h1>
+								</a>
 							</div>
-							<div class="col" style="background-color: #F95504;">
-								<h1 style="margin-top: 100px">
-									@Model.Categories[j + 3].Name
-								</h1>
+							<div class="col" style="background-color: #EF9710; text-align:center;">
+								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+3)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
+									<h1 style="margin-top: 100px; color: black;">
+										@Model.Categories[j + 3].Name
+									</h1>
+								</a>
 							</div>
 						</div>
 					</div>
