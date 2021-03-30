@@ -2,46 +2,37 @@
 @{
     ViewData["Title"] = "Example Shop";
 }
-<h1>@ViewData["Title"]</h1>
-
 <link rel="stylesheet" href="~/css/demo-grid.css" />
-
-
-@*<div class="grid">
-                @foreach (var shop in Model.Shops)
-                {
-                    <div class="item" foo data-shop="1">
-                        <div class="item-content container" data-title ="shop">
-                                <div class="row" style="height: 150px">
-                                    <img src="@shop.PicturePath" class="rounded">
-                                </div>
-                                <div class="row" style="height: auto">
-                                    <h3>
-                                        Name: @shop.Name;
-                                    </h3>
-                                </div>
-                                <div class="row" style="height: auto">
-                                    <h4>
-                                        Address: @shop.Address;
-                                    </h4>
-                                </div>
-                                <div class="row" style="height: auto">
-                                    <h4>
-                                        Description: @shop.Description;
-                                    </h4>
-                                </div>
+<div>
+    @*<div class="grid">
+            @foreach (var shop in Model.Shops)
+            {
+                <div class="item" product-price="4" product-name="aaa">
+                    <div class="item-content container" data-title="shop">
+                        <div class="row" style="height: 150px">
+                            <img src="@shop.PicturePath" class="rounded">
+                        </div>
+                        <div class="row" style="height: auto">
+                            <text>
+                                Name: @shop.Name;
+                            </text>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h5>
+                                Address: @shop.Address;
+                            </h5>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h5>
+                                Description: @shop.Description;
+                            </h5>
                         </div>
                     </div>
-                }
-                <div class="item" foo data-shop="1">
-                    <div class="item-content">
-                        1
-                    </div>
-
-    </div>*@
+                </div>
+            }
+        </div>*@
+</div>
 <section class="grid-demo">
-    <h2 class="section-title"><span>Grid Demo</span></h2>
-
     <div class="demo">
         <div class="grid-controls">
             <div class="grid-control search">
@@ -91,8 +82,10 @@
             <div class="grid-control sort">
                 <select class="grid-control-field sort-field form-control">
                     <option value="order" selected>Drag</option>
-                    <option value="title">Title (drag disabled)</option>
-                    <option value="color">Color (drag disabled)</option>
+                    @*<option value="title">Title (drag disabled)</option>
+                        <option value="color">Color (drag disabled)</option>*@
+                    <option value="title">Title</option>
+                    <option value="color">Price</option>
                 </select>
                 <div class="grid-control-icon">
                     <svg aria-hidden="true"
@@ -115,93 +108,88 @@
                     </svg>
                 </div>
             </div>
-
         </div>
+
+        @*<div class="grid">
+                <div class="item" product-price ="4" product-name="aaa">
+                    <div class="item-content">price=4, name=aaa</div>
+                </div>
+                <div class="item" product-price ="30" product-name="bbb">
+                    <div class="item-content">bbb</div>
+                </div>
+                <div class="item" product-price ="40" product-name="bbb">
+                    <div class="item-content">bbb</div>
+                </div>
+                <div class="item" product-price ="40" product-name="ccc">
+                    <div class="item-content">ccc</div>
+                </div>
+                <div class="item" product-price ="4" product-name="ddd">
+                    <div class="item-content">ddd</div>
+                </div>
+                <div class="item" product-price ="89" product-name="aaa">
+                    <div class="item-content">price=89, aaa</div>
+                </div>
+                <div class="item" product-price ="1" product-name="aaa">
+                    <div class="item-content">price=1, aaa</div>
+                </div>
+                <div class="item" product-price ="2" product-name="aaa">
+                    <div class="item-content">price=2, aaa</div>
+                </div>
+                <div class="item" product-price ="4" product-name="aaa">
+                    <div class="item-content">aaa</div>
+                </div>
+
+            </div>*@
 
         <div class="grid">
-            <div class="item" data-color ="aaa">
-                <div class="item-content">1</div>
-            </div>
-            <div class="item" data-color="red">
-                <div class="item-content">2</div>
-            </div>
-            <div class="item" data-title="3">
-                <div class="item-content">3</div>
-            </div>
-            <div class="item">
-                <div class="item-content">4</div>
-            </div>
-            <div class="item">
-                <div class="item-content">5</div>
-            </div>
-            <div class="item">
-                <div class="item-content">6</div>
-            </div>
-            <div class="item">
-                <div class="item-content">7</div>
-            </div>
-            <div class="item">
-                <div class="item-content">8</div>
-            </div>
-            <div class="item">
-                <div class="item-content">9</div>
-            </div>
-            <div class="item">
-                <div class="item-content">10</div>
-            </div>
-            <div class="item">
-                <div class="item-content">11</div>
-            </div>
-            <div class="item">
-                <div class="item-content">12</div>
-            </div>
-            <div class="item">
-                <div class="item-content">13</div>
-            </div>
-            <div class="item">
-                <div class="item-content">14</div>
-            </div>
-            <div class="item">
-                <div class="item-content">15</div>
-            </div>
-            <div class="item">
-                <div class="item-content">16</div>
-            </div>
-            <div class="item">
-                <div class="item-content">17</div>
-            </div>
-            <div class="item">
-                <div class="item-content">18</div>
-            </div>
-            <div class="item">
-                <div class="item-content">19</div>
-            </div>
-            <div class="item">
-                <div class="item-content">20</div>
-            </div>
-        </div>
-
-        @*<template class="grid-item-template">
-            <div class="grid-item">
-                <div class="grid-item-content">
-                    <div class="grid-card">
-                        <div class="grid-card-title"></div>
-                        <div class="grid-card-handle"></div>
-                        <div class="grid-card-remove">
-                            <svg class="board-item-action-icon icon-delete"
-                                 aria-hidden="true"
-                                 focusable="false"
-                                 role="img"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 448 512">
-                                <path fill="currentColor"
-                                      d="M439.15 453.06L297.17 384l141.99-69.06c7.9-3.95 11.11-13.56 7.15-21.46L432 264.85c-3.95-7.9-13.56-11.11-21.47-7.16L224 348.41 37.47 257.69c-7.9-3.95-17.51-.75-21.47 7.16L1.69 293.48c-3.95 7.9-.75 17.51 7.15 21.46L150.83 384 8.85 453.06c-7.9 3.95-11.11 13.56-7.15 21.47l14.31 28.63c3.95 7.9 13.56 11.11 21.47 7.15L224 419.59l186.53 90.72c7.9 3.95 17.51.75 21.47-7.15l14.31-28.63c3.95-7.91.74-17.52-7.16-21.47zM150 237.28l-5.48 25.87c-2.67 12.62 5.42 24.85 16.45 24.85h126.08c11.03 0 19.12-12.23 16.45-24.85l-5.5-25.87c41.78-22.41 70-62.75 70-109.28C368 57.31 303.53 0 224 0S80 57.31 80 128c0 46.53 28.22 86.87 70 109.28zM280 112c17.65 0 32 14.35 32 32s-14.35 32-32 32-32-14.35-32-32 14.35-32 32-32zm-112 0c17.65 0 32 14.35 32 32s-14.35 32-32 32-32-14.35-32-32 14.35-32 32-32z"></path>
-                            </svg>
+            @foreach (var shop in Model.Shops)
+            {
+                <div class="item" product-price="11" product-name="@shop.Name ">
+                    <div class="item-content container" data-title="shop">
+                        <div class="row" style="height: 150px">
+                            <img src="@shop.PicturePath" class="rounded">
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h3>
+                                Name: @shop.Name;
+                            </h3>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h5>
+                                Address: @shop.Address;
+                            </h5>
+                        </div>
+                        <div class="row" style="height: auto">
+                            <h5>
+                                Description: @shop.Description;
+                            </h5>
                         </div>
                     </div>
                 </div>
-            </div>
-        </template>*@
+            }
+        </div>
+
+        @*<template class="grid-item-template">
+                <div class="grid-item">
+                    <div class="grid-item-content">
+                        <div class="grid-card">
+                            <div class="grid-card-title"></div>
+                            <div class="grid-card-handle"></div>
+                            <div class="grid-card-remove">
+                                <svg class="board-item-action-icon icon-delete"
+                                     aria-hidden="true"
+                                     focusable="false"
+                                     role="img"
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 448 512">
+                                    <path fill="currentColor"
+                                          d="M439.15 453.06L297.17 384l141.99-69.06c7.9-3.95 11.11-13.56 7.15-21.46L432 264.85c-3.95-7.9-13.56-11.11-21.47-7.16L224 348.41 37.47 257.69c-7.9-3.95-17.51-.75-21.47 7.16L1.69 293.48c-3.95 7.9-.75 17.51 7.15 21.46L150.83 384 8.85 453.06c-7.9 3.95-11.11 13.56-7.15 21.47l14.31 28.63c3.95 7.9 13.56 11.11 21.47 7.15L224 419.59l186.53 90.72c7.9 3.95 17.51.75 21.47-7.15l14.31-28.63c3.95-7.91.74-17.52-7.16-21.47zM150 237.28l-5.48 25.87c-2.67 12.62 5.42 24.85 16.45 24.85h126.08c11.03 0 19.12-12.23 16.45-24.85l-5.5-25.87c41.78-22.41 70-62.75 70-109.28C368 57.31 303.53 0 224 0S80 57.31 80 128c0 46.53 28.22 86.87 70 109.28zM280 112c17.65 0 32 14.35 32 32s-14.35 32-32 32-32-14.35-32-32 14.35-32 32-32zm-112 0c17.65 0 32 14.35 32 32s-14.35 32-32 32-32-14.35-32-32 14.35-32 32-32z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>*@
     </div>
 </section>
 

@@ -4,7 +4,7 @@
     const filterField = document.querySelector('.grid-control-field.filter-field');
     const searchField = document.querySelector('.grid-control-field.search-field');
     const sortField = document.querySelector('.grid-control-field.sort-field');
-    const addButton = document.querySelector('.grid-button.add-more-items');
+   // const addButton = document.querySelector('.grid-button.add-more-items');
     const itemTemplate = document.querySelector('.grid-item-template');
     const characters = 'abcdefghijklmnopqrstuvwxyz';
     const colors = ['red', 'blue', 'green'];
@@ -27,11 +27,11 @@
         layoutDuration: 400,
         layoutEasing: 'cubic-bezier(0.625, 0.225, 0.100, 0.890)',
         sortData: {
-            title(item, element) {
-                return element.getAttribute('data-title') || '';
+            price(item, element) {
+                return element.getAttribute('product-price') || '';
             },
-            color(item, element) {
-                return element.getAttribute('data-color') || '';
+            title(item, element) {
+                return element.getAttribute('product-name') || '';
             },
         },
         dragEnabled: true,
@@ -103,9 +103,9 @@
                 const element = item.getElement();
                 const isSearchMatch =
                     !searchFieldValue ||
-                    (element.getAttribute('data-title') || '').toLowerCase().indexOf(searchFieldValue) > -1;
+                    (element.getAttribute('product-name') || '').toLowerCase().indexOf(searchFieldValue) > -1;
                 const isFilterMatch =
-                    !filterFieldValue || filterFieldValue === element.getAttribute('data-color');
+                    !filterFieldValue || filterFieldValue === element.getAttribute('product-price');
                 return isSearchMatch && isFilterMatch;
             },
             { onFinish: onFinish }
@@ -171,8 +171,6 @@
             },
         });
     }
-
-
 
     function updateDragState() {
         if (sortField.value === 'order') {
