@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
-using DLL.Entities;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

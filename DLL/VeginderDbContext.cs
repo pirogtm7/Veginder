@@ -1,11 +1,11 @@
-﻿using DLL.Entities;
+﻿using DAL.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLL
+namespace DAL
 {
 	public class VeginderDbContext : IdentityDbContext<UserEntity>
 	{

@@ -1,10 +1,10 @@
-﻿using DLL.Entities;
-using DLL.Repositories;
+﻿using DAL.Entities;
+using DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLL.UnitOfWork
+namespace DAL.UnitOfWork
 {
 	public class UnitOfWork : IUnitOfWork
 	{

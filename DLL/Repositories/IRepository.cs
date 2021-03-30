@@ -1,9 +1,9 @@
-﻿using DLL.Entities;
+﻿using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLL.Repositories
+namespace DAL.Repositories
 {
 	public interface IRepository<TEntity> where TEntity : IBaseEntity
 	{

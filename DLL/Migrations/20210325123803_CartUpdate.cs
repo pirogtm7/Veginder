@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DLL.Migrations
+namespace DAL.Migrations
 {
     public partial class CartUpdate : Migration
     {

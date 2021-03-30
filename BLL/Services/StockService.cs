@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
 using BLL.Interfaces;
-using DLL;
-using DLL.Entities;
-using DLL.UnitOfWork;
+using DAL;
+using DAL.Entities;
+using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Text;

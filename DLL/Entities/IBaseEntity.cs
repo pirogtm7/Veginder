@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DLL.Entities
+namespace DAL.Entities
 {
 	public interface IBaseEntity
 	{
