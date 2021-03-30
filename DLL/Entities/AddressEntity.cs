@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DLL.Entities
 {
+	[Table("Addresses")]
 	public class AddressEntity : BaseEntity
 	{
-		[Required]
 		private string _fullName;
-		[Required]
 		private string _street;
-		[Required]
 		private string _city;
-		[Required]
 		private int _zip;
+
+		[Required]
 		public string FullName { get => _fullName; set => _fullName = value; }
+		[Required]
 		public string Street { get => _street; set => _street = value; }
+		[Required]
 		public string City { get => _city; set => _city = value; }
 		public int Zip { get => _zip; set => _zip = value; }
+
+		public AddressEntity()
+		{
+
+		}
 
 		public AddressEntity(string fullName)
 		{

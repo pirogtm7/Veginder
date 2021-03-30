@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace Veginder
 {
@@ -33,9 +34,11 @@ namespace Veginder
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<VeginderDbContext>(opt =>
-				opt.UseSqlServer(Configuration.GetConnectionString("VeginderDatabase")));
+				{ 
+					opt.UseLazyLoadingProxies();
+					opt.UseSqlServer(Configuration.GetConnectionString("VeginderDatabase"));
+				});
 			services.AddScoped<IRepository<AddressEntity>, Repository<AddressEntity>>();
-			services.AddScoped<IRepository<CartEntity>, Repository<CartEntity>>();
 			services.AddScoped<IRepository<OrderEntity>, Repository<OrderEntity>>();
 			services.AddScoped<IRepository<ProductCategoryEntity>, Repository<ProductCategoryEntity>>();
 			services.AddScoped<IRepository<ProductEntity>, Repository<ProductEntity>>();
@@ -44,15 +47,25 @@ namespace Veginder
 			services.AddScoped<IRepository<CartOrderItemEntity>, Repository<CartOrderItemEntity>>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddSingleton(new MapperConfiguration(c => c.AddProfile(new BLL.Mapper())).CreateMapper());
-			services.AddTransient<IProductService, ProductService>();
 			services.AddTransient<IShopService, ShopService>();
 			services.AddTransient<ICategoryService, CategoryService>();
+			services.AddTransient<ICartService, CartService>();
+			services.AddTransient<IStockService, StockService>();
 
 			services.AddIdentity<UserEntity, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
 					.AddEntityFrameworkStores<VeginderDbContext>()
 					.AddDefaultTokenProviders();
+			
+			services.AddDistributedMemoryCache();
 
-			services.AddControllersWithViews();
+			services.AddSession(options =>
+			{
+				options.IdleTimeout = TimeSpan.FromMinutes(30);
+				options.Cookie.HttpOnly = true;
+				options.Cookie.IsEssential = true;
+			});
+
+			services.AddControllersWithViews();			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +87,8 @@ namespace Veginder
 			app.UseRouting();
 
 			app.UseAuthorization();
+			
+			app.UseSession();
 
 			app.UseEndpoints(endpoints =>
 			{

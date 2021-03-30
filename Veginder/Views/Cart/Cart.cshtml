@@ -1,0 +1,17 @@
+﻿@using BLL.DTOs
+@model Veginder.Models.CartModel
+
+@{
+	ViewData["Title"] = "Cart";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (CartOrderItem c in Model.Items)
+{
+	<img class="prod-image" src="@c.Stock.Product.PicturePath">
+	<h6>@c.Stock.Product.Name</h6>
+	<h6>Shop @c.Stock.Shop.Name</h6>
+	<h6>Quantity @c.Quantity</h6>
+	<h6>Price @c.Price</h6>
+}

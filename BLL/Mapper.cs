@@ -13,13 +13,10 @@ namespace BLL
         {
             CreateMap<Address, AddressEntity>()
                 .ReverseMap();
-            CreateMap<Cart, CartEntity>()
-                .ForMember(d => d.ItemEntities, opt => opt.MapFrom(src => src.Items))
-                .ReverseMap();
             CreateMap<CartOrderItem, CartOrderItemEntity>()
                 .ReverseMap();
             CreateMap<Order, OrderEntity>()
-                .ForMember(d => d.ItemEntities, opt => opt.MapFrom(src => src.Items))
+                .ForMember(d => d.Items, opt => opt.MapFrom(src => src.Items))
                 .ReverseMap();
             CreateMap<ProductCategory, ProductCategoryEntity>()
                 .ReverseMap();

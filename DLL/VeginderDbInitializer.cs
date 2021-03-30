@@ -17,10 +17,6 @@ namespace DLL
 
 			context.Database.EnsureDeleted();
 			context.Database.EnsureCreated();
-			//if (!context.Database.EnsureCreated())
-			//{
-			//	return;
-			//}
 
 			ProductCategoryEntity dairy = new ProductCategoryEntity() { Name = "Dairy" };
 			ProductCategoryEntity drinks = new ProductCategoryEntity() { Name = "Drinks" };
@@ -31,12 +27,13 @@ namespace DLL
 			ProductCategoryEntity sweets = new ProductCategoryEntity() { Name = "Sweets" };
 			ProductCategoryEntity vegetables = new ProductCategoryEntity() { Name = "Vegetables" };
 
+
+
 			ProductEntity blamblamble = new ProductEntity()
 			{
 				Name = "Blam Blam Ble",
 				Description = "desc1",
 				PicturePath = "https://drive.google.com/uc?id=1J1U9zCfBr5VFohWbsk1GuU7tBSkPFaYG",
-				Price = 30,
 				Category = dairy
 			};
 
@@ -45,7 +42,6 @@ namespace DLL
 				Name = "Cheese",
 				Description = "desc2",
 				PicturePath = "https://drive.google.com/uc?id=1yUI_gGS0TZrpf_Dx7ricb8X9hJuY2gX3",
-				Price = 20,
 				Category = dairy
 			};
 
@@ -54,7 +50,6 @@ namespace DLL
 				Name = "Milk",
 				Description = "desc3",
 				PicturePath = "https://drive.google.com/uc?id=1LOxpSdvhBtB4uQt3ApQVCukom5TYSInC",
-				Price = 18,
 				Category = dairy
 			};
 
@@ -63,7 +58,6 @@ namespace DLL
 				Name = "Yogurt",
 				Description = "desc4",
 				PicturePath = "https://drive.google.com/uc?id=1PrMFedgUNk_9olAk5o84LIvUDadRE8he",
-				Price = 50,
 				Category = dairy
 			};
 
@@ -72,7 +66,6 @@ namespace DLL
 				Name = "Juice",
 				Description = "desc5",
 				PicturePath = "https://drive.google.com/uc?id=1btz472A-lz84VFlXggOoOVOzlBWMuVaK",
-				Price = 32,
 				Category = drinks
 			};
 
@@ -81,7 +74,6 @@ namespace DLL
 				Name = "Tea",
 				Description = "desc6",
 				PicturePath = "https://drive.google.com/uc?id=1tuL4WCp6pCiCVzM4ygLTH9qe2GEy_sUh",
-				Price = 12,
 				Category = drinks
 			};
 
@@ -90,7 +82,6 @@ namespace DLL
 				Name = "Water",
 				Description = "desc7",
 				PicturePath = "https://drive.google.com/uc?id=1jgvJm4UytWVDEvGqX3P21sUmD7AaBivO",
-				Price = 20,
 				Category = drinks
 			};
 
@@ -99,7 +90,6 @@ namespace DLL
 				Name = "Dorado",
 				Description = "desc8",
 				PicturePath = "https://drive.google.com/uc?id=1onhGzjCFlEkZNhpDlyBTRH6YkaKwu9Zm",
-				Price = 50,
 				Category = fish
 			};
 
@@ -108,7 +98,6 @@ namespace DLL
 				Name = "Bananas",
 				Description = "desc9",
 				PicturePath = "https://drive.google.com/uc?id=1LfWuory-YXoGLAOFU6-gpBZ8vqtOxwAt",
-				Price = 22,
 				Category = fruits
 			};
 
@@ -117,7 +106,6 @@ namespace DLL
 				Name = "Kiwi",
 				Description = "desc10",
 				PicturePath = "https://drive.google.com/uc?id=1-bx44bBANzjW5J2qwacRFlCUs_qZZmsG",
-				Price = 42,
 				Category = fruits
 			};
 
@@ -126,7 +114,6 @@ namespace DLL
 				Name = "Pears",
 				Description = "desc11",
 				PicturePath = "https://drive.google.com/uc?id=1O58FeP1pqV-CyjW9uy-J0q0mCogxMt0I",
-				Price = 19,
 				Category = fruits
 			};
 
@@ -135,7 +122,6 @@ namespace DLL
 				Name = "Flour",
 				Description = "desc12",
 				PicturePath = "https://drive.google.com/uc?id=1TQQPbw6bOVlWQMg7OA6Hvh36FRy_jvUt",
-				Price = 31,
 				Category = grocery
 			};
 
@@ -144,7 +130,6 @@ namespace DLL
 				Name = "Oatmeal",
 				Description = "desc13",
 				PicturePath = "https://drive.google.com/uc?id=1oMYUoRs1I6A6IWZlADhq8aqxzY5W5U7H",
-				Price = 21,
 				Category = grocery
 			};
 
@@ -153,7 +138,6 @@ namespace DLL
 				Name = "Olive Oil",
 				Description = "desc14",
 				PicturePath = "https://drive.google.com/uc?id=1DKOyI4c5Pix023p6MCWo00O6hC-nWlkb",
-				Price = 40,
 				Category = grocery
 			};
 
@@ -162,7 +146,6 @@ namespace DLL
 				Name = "Beef",
 				Description = "desc15",
 				PicturePath = "https://drive.google.com/uc?id=1g-wiFd1Gt6EcUlIm1DWDor7zw_Z-3aFg",
-				Price = 36,
 				Category = meat
 			};
 
@@ -171,7 +154,6 @@ namespace DLL
 				Name = "Pork",
 				Description = "desc16",
 				PicturePath = "https://drive.google.com/uc?id=1Ccd_sLNmHZc4a7zyfz7anopHgfmgOf30",
-				Price = 37,
 				Category = meat
 			};
 
@@ -180,7 +162,6 @@ namespace DLL
 				Name = "Salo",
 				Description = "desc17",
 				PicturePath = "https://drive.google.com/uc?id=1CVa_nb0cOGMC0gtyOBbeFuwo9bh60hkT",
-				Price = 1000,
 				Category = meat
 			};
 
@@ -189,7 +170,6 @@ namespace DLL
 				Name = "Biscuits",
 				Description = "desc18",
 				PicturePath = "https://drive.google.com/uc?id=1gZhecY6Ubd6h29nVaMpKZ6vQCC0maoJ3",
-				Price = 20,
 				Category = sweets
 			};
 
@@ -198,7 +178,6 @@ namespace DLL
 				Name = "Peanut Butter",
 				Description = "desc19",
 				PicturePath = "https://drive.google.com/uc?id=1CfIxkIKC0gaip5FUsCVUTBlTzMHrrKxf",
-				Price = 35,
 				Category = sweets
 			};
 
@@ -207,7 +186,6 @@ namespace DLL
 				Name = "Avocado",
 				Description = "desc20",
 				PicturePath = "https://drive.google.com/uc?id=1SJrNlF00UHSwli6TDaKyNLkDYtKmwhRW",
-				Price = 40,
 				Category = vegetables
 			};
 
@@ -216,7 +194,6 @@ namespace DLL
 				Name = "Bell Pepper",
 				Description = "desc21",
 				PicturePath = "https://drive.google.com/uc?id=1BZKsZveiNwh2HX5WVLylHW0Sjq8YsDAl",
-				Price = 30,
 				Category = vegetables
 			};
 
@@ -225,7 +202,6 @@ namespace DLL
 				Name = "Potato",
 				Description = "desc22",
 				PicturePath = "https://drive.google.com/uc?id=1SWYTqxi9O0DnhyAVjyPrX8Wvh7agJZjz",
-				Price = 30,
 				Category = vegetables
 			};
 
@@ -265,6 +241,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = cheese,
+				Price = 20,
 				Quantity = 20
 			};
 
@@ -272,6 +249,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = tea,
+				Price = 21,
 				Quantity = 30
 			};
 
@@ -279,6 +257,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = juice,
+				Price = 22,
 				Quantity = 20
 			};
 
@@ -286,6 +265,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = dorado,
+				Price = 23,
 				Quantity = 20
 			};
 
@@ -293,6 +273,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = bananas,
+				Price = 24,
 				Quantity = 20
 			};
 
@@ -300,6 +281,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = kiwi,
+				Price = 25,
 				Quantity = 20
 			};
 
@@ -307,6 +289,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = pears,
+				Price = 26,
 				Quantity = 20
 			};
 
@@ -314,6 +297,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = flour,
+				Price = 27,
 				Quantity = 20
 			};
 
@@ -321,6 +305,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = oatmeal,
+				Price = 27,
 				Quantity = 20
 			};
 
@@ -328,6 +313,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = oliveoil,
+				Price = 28,
 				Quantity = 20
 			};
 
@@ -335,6 +321,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = beef,
+				Price = 29,
 				Quantity = 20
 			};
 
@@ -342,6 +329,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = pork,
+				Price = 30,
 				Quantity = 20
 			};
 
@@ -349,6 +337,7 @@ namespace DLL
 			{
 				Shop = biobio,
 				Product = salo,
+				Price = 1000,
 				Quantity = 20
 			};
 
@@ -356,6 +345,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = biscuits,
+				Price = 31,
 				Quantity = 20
 			};
 
@@ -363,6 +353,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = peanutbutter,
+				Price = 32,
 				Quantity = 20
 			};
 
@@ -370,6 +361,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = avocado,
+				Price = 33,
 				Quantity = 20
 			};
 
@@ -377,6 +369,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = bellpepper,
+				Price = 34,
 				Quantity = 20
 			};
 
@@ -384,6 +377,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = potato,
+				Price = 35,
 				Quantity = 20
 			};
 
@@ -392,6 +386,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = dorado,
+				Price = 36,
 				Quantity = 20
 			};
 
@@ -399,6 +394,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = oatmeal,
+				Price = 37,
 				Quantity = 20
 			};
 
@@ -406,6 +402,7 @@ namespace DLL
 			{
 				Shop = biomatica,
 				Product = oliveoil,
+				Price = 38,
 				Quantity = 20
 			};
 
@@ -413,6 +410,7 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = blamblamble,
+				Price = 39,
 				Quantity = 20
 			};
 
@@ -420,6 +418,7 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = milk,
+				Price = 40,
 				Quantity = 20
 			};
 
@@ -427,6 +426,7 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = yogurt,
+				Price = 41,
 				Quantity = 20
 			};
 
@@ -434,6 +434,7 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = water,
+				Price = 42,
 				Quantity = 20
 			};
 
@@ -441,6 +442,7 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = beef,
+				Price = 43,
 				Quantity = 20
 			};
 
@@ -448,6 +450,7 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = biscuits,
+				Price = 44,
 				Quantity = 20
 			};
 
@@ -455,12 +458,13 @@ namespace DLL
 			{
 				Shop = greencommon,
 				Product = potato,
+				Price = 666,
 				Quantity = 20
 			};
 
-			context.ShopContextEntities.Add(pur);
+			context.Shops.Add(pur);
 
-			context.StockContextEntities.AddRange(new List<StockEntity> {biobio1, biobio2, biobio3, biobio4, biobio5, biobio6,
+			context.Stocks.AddRange(new List<StockEntity> {biobio1, biobio2, biobio3, biobio4, biobio5, biobio6,
 				biobio7, biobio8, biobio9, biobio10, biobio11, biobio12, biobio13, biomatica1, biomatica2, biomatica3,
 				biomatica4, biomatica5, biomatica6, biomatica7, biomatica8, greencommon1, greencommon2, greencommon3,
 				greencommon4, greencommon5, greencommon6, greencommon7});

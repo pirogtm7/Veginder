@@ -5,7 +5,6 @@
 	ViewData["Title"] = "Home Page";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="~/css/index_carousel.css" />
 
 <h1>Shops</h1>
 <div id="carouselShops" class="carousel slide" data-bs-ride="carousel">
@@ -13,7 +12,7 @@
 		@for (int i = 0; i < Model.Shops.Count; i++)
 		{
 			if (i == 0)
-			{				
+			{
 				<button type="button" data-bs-target="#carouselShops" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @(i + 1)"></button>
 			}
 			else
@@ -26,9 +25,9 @@
 
 		@for (int i = 0; i < Model.Shops.Count; i++)
 		{
-			if (i == 0)
-			{
-				<div class="carousel-item active">
+			//if (i == 0)
+			//{
+				<div class="carousel-item @(i == 0 ? "active" : "")">
 					<div class="container d-block w-100r">
 						<div class="row">
 							<a asp-controller="Product" asp-action="Products" asp-route-shopId="@i" style="padding: 0px 0px 0px 0px;">
@@ -37,7 +36,7 @@
 						</div>
 					</div>
 				</div>
-			}
+			@*}
 			else
 			{
 				<div class="carousel-item">
@@ -49,7 +48,7 @@
 						</div>
 					</div>
 				</div>
-			}
+			}*@
 		}
 	</div>
 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselShops" data-bs-slide="prev">
@@ -84,37 +83,37 @@
 		@{int j = 0;}
 		@for (int i = 0; i < Model.Categories.Count / 4; i++)
 		{
-			if (i == 0)
-			{
-				<div class="carousel-item active">
+			//if (i == 0)
+			//{
+				<div class="carousel-item @(i == 0 ? "active" : "")">
 					<div class="container d-block w-100r">
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #609356; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@j" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #609356;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@j" >
+									<h1 class="categ-h">
 										@Model.Categories[j].Name
 									</h1>
 								</a>
 							</div>
-							<div class="col" style="background-color: #F95504; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+1)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #F95504;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+1)">
+									<h1 class="categ-h">
 										@Model.Categories[j + 1].Name
 									</h1>
 								</a>
 							</div>
 						</div>
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #BC3D9E; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+2)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #BC3D9E;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+2)">
+									<h1 class="categ-h">
 										@Model.Categories[j + 2].Name
 									</h1>
 								</a>
 							</div>
-							<div class="col" style="background-color: #EF9710; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+3)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #EF9710;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+3)">
+									<h1 class="categ-h">
 										@Model.Categories[j + 3].Name
 									</h1>
 								</a>
@@ -122,38 +121,38 @@
 						</div>
 					</div>
 				</div>
-			}
+			@*}
 			else
 			{
 				<div class="carousel-item">
 					<div class="container d-block w-100r">
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #609356; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@j" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #609356;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@j">
+									<h1 class="categ-h">
 										@Model.Categories[j].Name
 									</h1>
 								</a>
 							</div>
-							<div class="col" style="background-color: #F95504; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+1)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #F95504;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+1)">
+									<h1 class="categ-h">
 										@Model.Categories[j + 1].Name
 									</h1>
 								</a>
 							</div>
 						</div>
 						<div class="row" style="height: 250px">
-							<div class="col" style="background-color: #BC3D9E; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+2)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #BC3D9E;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+2)">
+									<h1 class="categ-h">
 										@Model.Categories[j + 2].Name
 									</h1>
 								</a>
 							</div>
-							<div class="col" style="background-color: #EF9710; text-align:center;">
-								<a asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+3)" style="padding: 0px 0px 0px 0px; display: inline-block; height: 250px; width: inherit; text-decoration: none;">
-									<h1 style="margin-top: 100px; color: black;">
+							<div class="col" style="background-color: #EF9710;">
+								<a class="categ-link" asp-controller="Product" asp-action="Products" asp-route-categoryId="@(j+3)">
+									<h1 class="categ-h">
 										@Model.Categories[j + 3].Name
 									</h1>
 								</a>
@@ -161,7 +160,7 @@
 						</div>
 					</div>
 				</div>
-			}
+			}*@
 			j += 4;
 		}
 	</div>

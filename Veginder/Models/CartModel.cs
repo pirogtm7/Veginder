@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Veginder.Models
 {
-	public class ProductsModel
+	public class CartModel
 	{
-		public List<Product> Products;
+		public List<CartOrderItem> Items;
 
-		public ProductsModel(List<Product> products)
+		public CartModel(List<CartOrderItem> items)
 		{
-			Products = products;
+			Items = items;
 		}
 	}
 }

@@ -8,5 +8,6 @@ namespace BLL.Interfaces
 	public interface IShopService
 	{
 		IEnumerable<Shop> GetAllShops();
+		//Shop GetShopById(int id);
 	}
 }

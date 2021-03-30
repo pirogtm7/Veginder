@@ -10,29 +10,35 @@ namespace Veginder.Controllers
 {
 	public class ProductController : Controller
 	{
-		IProductService _productService;
+		IStockService _stockService;
 
-		public ProductController(IProductService productService)
+		public ProductController(IStockService stockService)
 		{
-			_productService = productService;
+			_stockService = stockService;
 		}
 
 		[HttpGet]
 		public IActionResult Products(int? shopId, int? categoryId)
 		{
-			ProductsModel model = new ProductsModel(_productService.GetAllProducts().ToList());
+			StocksModel model = new StocksModel(_stockService.GetAllStocks().ToList());
 
-			//probably should do sorting in html/css/js, not here
+			//probably should do filtering in html/css/js, not here
 			//if so, add id's to the model and move if's to html
 			if (shopId != null)
 			{
-				//sort by shop 
+				//filter by shop 
 			}
 			else if (categoryId != null)
 			{
-				//sort by category
+				//filter by category
 			}
 
+			return View(model);
+		}
+
+		public IActionResult ShowProduct(int stockId)
+		{
+			StockModel model = new StockModel(_stockService.GetStockById(stockId));
 			return View(model);
 		}
 	}

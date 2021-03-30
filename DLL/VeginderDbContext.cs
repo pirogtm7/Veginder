@@ -9,21 +9,18 @@ namespace DLL
 {
 	public class VeginderDbContext : IdentityDbContext<UserEntity>
 	{
-		public DbSet<AddressEntity> DeliveryContextEntities { get; set; }
-		public DbSet<CartEntity> CartContextEntities { get; set; }
-		public DbSet<OrderEntity> OrderContextEntities { get; set; }
-		public DbSet<ProductCategoryEntity> ProductCategoryContextEntities { get; set; }
-		public DbSet<ProductEntity> ProductContextEntities { get; set; }
-		public DbSet<ShopEntity> ShopContextEntities { get; set; }
-		public DbSet<CartOrderItemEntity> CartOrderItemContextEntities { get; set; }
-		public DbSet<StockEntity> StockContextEntities { get; set; }
+		public DbSet<AddressEntity> Addresses { get; set; }
+		public DbSet<OrderEntity> Orders { get; set; }
+		public DbSet<ProductCategoryEntity> ProductCategories { get; set; }
+		public DbSet<ProductEntity> Products { get; set; }
+		public DbSet<ShopEntity> Shops { get; set; }
+		public DbSet<CartOrderItemEntity> CartOrderItems { get; set; }
+		public DbSet<StockEntity> Stocks { get; set; }
 
 
 		public VeginderDbContext(DbContextOptions<VeginderDbContext> options) : base(options)
 		{
-			//VeginderDbInitializer.Initialize(this);
+			VeginderDbInitializer.Initialize(this);
 		}
 	}
-
-
 }
