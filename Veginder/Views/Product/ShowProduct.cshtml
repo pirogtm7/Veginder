@@ -1,0 +1,16 @@
+﻿@model Veginder.Models.StockModel
+@{
+	ViewData["Title"] = Model.Stock.Product.Name;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Stock.Product.Name</h1>
+<img class="prod-image" src="@Model.Stock.Product.PicturePath" />
+<h6>Price @Model.Stock.Price</h6>
+
+<h3>In stock: @Model.Stock.Quantity</h3>
+<h3>Quantity (to cart): @Model.Quantity</h3>
+
+<form asp-controller="Cart" asp-action="AddItemToCart" asp-route-stockId="@Model.Stock.Id" asp-route-quantity="@Model.Quantity" method="post">
+	<button type="submit">Add to cart</button>
+</form>

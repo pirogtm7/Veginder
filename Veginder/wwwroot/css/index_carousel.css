@@ -7,3 +7,16 @@
 .col {
     text-align: center;
 }
+
+.categ-link {
+    padding: 0px 0px 0px 0px;
+    display: inline-block;
+    height: 250px;
+    width: inherit;
+    text-decoration: none;
+}
+
+.categ-h {
+    margin-top: 100px;
+    color: black;
+}

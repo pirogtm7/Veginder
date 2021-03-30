@@ -12,13 +12,11 @@ namespace BLL.DTOs
 		//private Payment payment;
 		private string _orderStatus;
 		private Address _address;
-		private Cart _cart;
 
 		public string Email { get => _email; set => _email = value; }
 		public DateTime Date { get => _date; set => _date = value; }
 		public List<CartOrderItem> Items { get => _items; set => _items = value; }
 		public string OrderStatus { get => _orderStatus; set => _orderStatus = value; }
 		public Address Address { get => _address; set => _address = value; }
-		public Cart Cart { get => _cart; set => _cart = value; }
 	}
 }

@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BLL.Interfaces;
+using DLL;
+using DLL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Veginder.Models;
 
@@ -27,6 +30,13 @@ namespace Veginder.Controllers
 		[HttpGet]
 		public IActionResult Index()
 		{
+			//VeginderDbContext context = new VeginderDbContext();
+			//var stocks = context.Stocks
+			//	.Include(s => s.Product)
+			//	.ToList();
+
+
+
 			HomePageModel model = new HomePageModel(_shopService.GetAllShops().ToList(),
 				_categoryService.GetAllCategories().ToList());
 			return View(model);

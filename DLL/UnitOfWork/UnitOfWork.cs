@@ -9,8 +9,7 @@ namespace DLL.UnitOfWork
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly VeginderDbContext _context;
-		public IRepository<AddressEntity> DeliveryRepository { get; }
-		public IRepository<CartEntity> CartRepository { get; }
+		public IRepository<AddressEntity> AddressRepository { get; }
 		public IRepository<OrderEntity> OrderRepository { get; }
 		public IRepository<ProductCategoryEntity> ProductCategoryRepository { get; }
 		public IRepository<ProductEntity> ProductRepository { get; }
@@ -19,15 +18,14 @@ namespace DLL.UnitOfWork
 		public IRepository<StockEntity> StockRepository { get; }
 
 
-		public UnitOfWork(VeginderDbContext context, IRepository<AddressEntity> deliveries,	
-			IRepository<CartEntity> carts, IRepository<OrderEntity> orders, 
+		public UnitOfWork(VeginderDbContext context,
+			IRepository<AddressEntity> addresses, IRepository<OrderEntity> orders, 
 			IRepository<ProductEntity> products, IRepository<ShopEntity> shops,
 			IRepository<CartOrderItemEntity> cartOrderItems,
 			IRepository<StockEntity> stocks, IRepository<ProductCategoryEntity> categories)
 		{
 			_context = context;
-			DeliveryRepository = deliveries;
-			CartRepository = carts;
+			AddressRepository = addresses;
 			OrderRepository = orders;
 			ProductRepository = products;
 			ShopRepository = shops;

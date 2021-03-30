@@ -1,14 +1,20 @@
 ﻿@using BLL.DTOs
-@model Veginder.Models.ProductsModel
+@model Veginder.Models.StocksModel
 
 @{ 
-	ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Products";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@foreach( Product p in Model.Products)
+@foreach (Stock s in Model.Stocks)
 {
-	<img src="@p.PicturePath">
-	<h6>@p.Name</h6>
+	<a asp-controller="Product" asp-action="ShowProduct" asp-route-stockId="@s.Id">
+		<img class="prod-image" src="@s.Product.PicturePath">
+		<h6>@s.Product.Name</h6>
+		<h6>@s.Product.Category.Name</h6>
+		<h6>@s.Shop.Name</h6>
+		<h6>In stock: @s.Quantity</h6>
+		<h6>Price: @s.Price</h6>
+	</a>
 }

@@ -26,5 +26,12 @@ namespace BLL.Services
 			IEnumerable<Shop> shops = _mapper.Map<IEnumerable<Shop>>(shopEntities);
 			return shops;
 		}
+
+		//public Shop GetShopById(int id)
+		//{
+		//	ShopEntity shopEntity = _unitOfWork.ShopRepository.Get(id);
+		//	return _mapper.Map<Shop>(shopEntity);
+		//}
+
 	}
 }

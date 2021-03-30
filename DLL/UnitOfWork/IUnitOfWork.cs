@@ -8,8 +8,8 @@ namespace DLL.UnitOfWork
 {
 	public interface IUnitOfWork
 	{
-		IRepository<AddressEntity> DeliveryRepository { get; }
-		IRepository<CartEntity> CartRepository { get; }
+		IRepository<AddressEntity> AddressRepository { get; }
+		//IRepository<CartEntity> CartRepository { get; }
 		IRepository<OrderEntity> OrderRepository { get; }
 		IRepository<ProductCategoryEntity> ProductCategoryRepository { get; }
 		IRepository<ProductEntity> ProductRepository { get; }
