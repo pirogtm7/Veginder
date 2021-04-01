@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DLL.Entities
+namespace DAL.Entities
 {
 	public abstract class BaseEntity : IBaseEntity
 	{

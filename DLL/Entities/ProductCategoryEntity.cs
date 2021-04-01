@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DLL.Entities
+namespace DAL.Entities
 {
 	[Table("ProductCategories")]
 	public class ProductCategoryEntity : BaseEntity

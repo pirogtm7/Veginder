@@ -1,11 +1,11 @@
-﻿using DLL.Entities;
+﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DLL.Repositories
+namespace DAL.Repositories
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
 	{

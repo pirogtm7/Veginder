@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace DLL.Entities
+namespace DAL.Entities
 {
 	[Table("Shops")]
 	public class ShopEntity : BaseEntity
