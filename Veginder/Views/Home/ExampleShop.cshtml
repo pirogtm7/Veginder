@@ -85,7 +85,7 @@
                     @*<option value="title">Title (drag disabled)</option>
                         <option value="color">Color (drag disabled)</option>*@
                     <option value="title">Title</option>
-                    <option value="color">Price</option>
+                    <option value="price">Price</option>
                 </select>
                 <div class="grid-control-icon">
                     <svg aria-hidden="true"
@@ -141,10 +141,13 @@
 
             </div>*@
 
-        <div class="grid">
-            @foreach (var shop in Model.Shops)
-            {
-                <div class="item" product-price="11" product-name="@shop.Name ">
+    <div class="grid">
+        @foreach (var shop in Model.Shops)
+        {
+            var rand = new Random();
+            int r = rand.Next(1, 20);
+            
+                <div class="item" product-price=@r product-name="@shop.Name ">
                     <div class="item-content container" data-title="shop">
                         <div class="row" style="height: 150px">
                             <img src="@shop.PicturePath" class="rounded">
@@ -166,8 +169,10 @@
                         </div>
                     </div>
                 </div>
-            }
-        </div>
+            
+
+        }
+    </div>
 
         @*<template class="grid-item-template">
                 <div class="grid-item">

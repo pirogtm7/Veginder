@@ -126,11 +126,21 @@
 
         // Sort the items.
         grid.sort(
-            currentSort === 'title' ? 'title' : currentSort === 'color' ? 'color title' : dragOrder
+            currentSort === 'title' ? 'title' : currentSort === 'price' ? 'price title' : dragOrder
         );
 
         // Update active sort value.
         sortFieldValue = currentSort;
+    }
+
+    // Main function
+    function sort_byint() {
+        var $wrap = $('.grid');
+        $wrap.find('.item').sort(function (a, b) {
+            return + a.getAttribute('product-price') -
+                +b.getAttribute('product-price');
+        })
+            .appendTo($wrap);
     }
 
     let addEffectTimeout = null;
