@@ -27,11 +27,11 @@
         left: 0.5rem;
         right: 0.5rem;
         bottom: 0;
-        border-bottom: 0.4rem dotted #65ffc3;
+        border-bottom: 0.4rem dotted #598392;
     }
 
     .grid-control:focus-within:before {
-        border-bottom: 0.7rem double #ff69ea;
+        border-bottom: 0.7rem double #598392;
     }
 
     .grid-control:after {
@@ -41,9 +41,97 @@
         left: -0.2rem;
         top: 1.5rem;
         bottom: 1.5rem;
-        border-left: 0.4rem dotted #65ffc3;
+        border-left: 0.4rem dotted #598392
     }
 
+.grid-control-field {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 6rem;
+    padding: 1rem 1.5rem 1rem 5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 4rem;
+    color: #01161E;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    z-index: 1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+@media (max-width: 767px) {
+    .grid-control-field {
+        height: 5rem;
+        line-height: 3rem;
+    }
+}
+
+.grid-control-field::placeholder {
+    opacity: 1;
+    color: #AEC3B0;
+    font-style: italic;
+}
+
+select.grid-control-field {
+    padding-right: 5rem;
+    cursor: pointer;
+}
+
+    select.grid-control-field::-ms-expand {
+        display: none;
+    }
+
+.grid-control-field:focus {
+    outline: 0;
+}
+
+.grid-control-icon,
+.grid-select-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 5rem;
+    height: 6rem;
+    padding: 1.5rem;
+    z-index: 2;
+    pointer-events: none;
+    color: #01161E;
+}
+/*
+.grid-control:focus-within .grid-control-icon,
+.grid-control:focus-within .grid-select-arrow {
+  color: rgb(101, 255, 195);
+}
+*/
+@media (max-width: 767px) {
+    .grid-control-icon,
+    .grid-select-arrow {
+        height: 5rem;
+    }
+}
+
+.grid-control-icon {
+    left: 0;
+}
+
+.grid-select-arrow {
+    right: 0;
+    padding: 1.7rem;
+}
+
+    .grid-control-icon svg,
+    .grid-select-arrow svg {
+        flex-grow: 1;
+    }
+
+    
     .grid-control:first-child:after {
         display: none;
     }
@@ -227,17 +315,17 @@ select.grid-control-field {
 
 .grid-item.red .grid-card {
     color: #ffe67a;
-    background: #ff69ea;
+    background: #598392;
 }
 
 .grid-item.green .grid-card {
     color: #5455ff;
-    background: #aaffdc;
+    background: #598392;
 }
 
 .grid-item.blue .grid-card {
     color: #aaffdc;
-    background-color: rgb(139, 152, 255);
+    background-color: #598392;
 }
 
 .grid-card-handle {
@@ -372,8 +460,8 @@ select.grid-control-field {
 
 .item {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     line-height: 200px;
     margin: 5px;
     z-index: 1;
@@ -402,17 +490,14 @@ select.grid-control-field {
     position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
-    background: olivedrab;
+    text-align: left;
+    background: #AEC3B0;
     font-size: 15px;
     color: black;
     cursor: pointer;
 }
 
 .item.muuri-item-dragging .item-content {
-    background: blue;
+    background: #598392;
 }
 
-.item.muuri-item-releasing .item-content {
-    background: blueViolet;
-}
