@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL.DTOs;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,10 +37,41 @@ namespace Veginder.Controllers
 			return View(model);
 		}
 
-		public IActionResult ShowProduct(int stockId)
+		public IActionResult ShowProduct(int stockId, int? changedQuantity)
 		{
 			StockModel model = new StockModel(_stockService.GetStockById(stockId));
+			
+			if (changedQuantity != null)
+			{
+				model.Quantity = (int)changedQuantity;
+			}
+
 			return View(model);
+		}
+
+		public IActionResult IncreaseQuantity(int stockId, int quantity)
+		{
+			Stock stock = _stockService.GetStockById(stockId);
+			int? changedQuantity = null;
+
+			if (stock.Quantity > quantity)
+			{
+				changedQuantity = quantity + 1;
+			}
+
+			return RedirectToAction("ShowProduct", "Product", new { stockId, changedQuantity });
+		}
+
+		public IActionResult DecreaseQuantity(int stockId, int quantity)
+		{
+			int? changedQuantity = null;
+
+			if (quantity > 1)
+			{
+				changedQuantity = quantity - 1;
+			}
+
+			return RedirectToAction("ShowProduct", "Product", new { stockId, changedQuantity });
 		}
 	}
 }

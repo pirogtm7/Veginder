@@ -5,6 +5,7 @@ using DAL.Entities;
 using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BLL.Services
@@ -20,26 +21,128 @@ namespace BLL.Services
 			_mapper = mapper;
 		}
 
-		public void AddItemToCart(CartOrderItem item)
+
+		public void AddItemToCart(Stock stock, int quantity, string cartId)
 		{
-			CartOrderItemEntity itemEntity = _mapper.Map<CartOrderItemEntity>(item);
-			_unitOfWork.CartOrderItemRepository.Add(itemEntity);
+			CartOrderItemEntity itemEntity = _unitOfWork.CartOrderItemRepository.GetAll().ToList().Find(
+				i => i.CartId == cartId && i.StockId == stock.Id);
+
+			if (itemEntity != null)
+			{
+				itemEntity.Quantity += quantity;
+				itemEntity.Price = itemEntity.Stock.Price * itemEntity.Quantity;
+				_unitOfWork.CartOrderItemRepository.Update(itemEntity);
+			}
+			else
+			{
+				CartOrderItem newItem = new CartOrderItem()
+				{
+					StockId = stock.Id,
+					Quantity = quantity,
+					CartId = cartId,
+					Price = stock.Price * quantity
+				};
+
+				CartOrderItemEntity newItemEntity = _mapper.Map<CartOrderItemEntity>(newItem);
+				_unitOfWork.CartOrderItemRepository.Add(newItemEntity);
+			}
+
+			StockEntity stockEntity = _unitOfWork.StockRepository.Get(stock.Id);
+			stockEntity.Quantity -= quantity;
+			_unitOfWork.StockRepository.Update(stockEntity);
+
 			_unitOfWork.Save();
 		}
 
+		public void RemoveItemFromCart(int itemId, int stockId)
+		{
+			CartOrderItemEntity itemEntity = _unitOfWork.CartOrderItemRepository.Get(itemId);
+
+			if (itemEntity.Quantity > 1)
+			{
+				itemEntity.Quantity--;
+				itemEntity.Price = itemEntity.Stock.Price * itemEntity.Quantity;
+				_unitOfWork.CartOrderItemRepository.Update(itemEntity);
+			}
+			else if (itemEntity.Quantity == 1)
+			{
+				_unitOfWork.CartOrderItemRepository.Delete(itemEntity.Id);
+			}
+
+			StockEntity stockEntity = _unitOfWork.StockRepository.Get(stockId);
+			stockEntity.Quantity++;
+			_unitOfWork.StockRepository.Update(stockEntity);
+
+			_unitOfWork.Save();
+		}
+
+
+
+		public void DeleteItem(int itemId, int stockId)
+		{
+			int quantity = _unitOfWork.CartOrderItemRepository.Get(itemId).Quantity;
+			_unitOfWork.CartOrderItemRepository.Delete(itemId);
+
+			StockEntity stockEntity = _unitOfWork.StockRepository.Get(stockId);
+			stockEntity.Quantity += quantity;
+			_unitOfWork.StockRepository.Update(stockEntity);
+
+			_unitOfWork.Save();
+		}
+
+
 		public List<CartOrderItem> GetAllItemsFromCart(string cartId)
 		{
-			IEnumerable<CartOrderItemEntity> itemEntities = _unitOfWork.CartOrderItemRepository.GetAll();
-			List<CartOrderItemEntity> sortedItemEntities = new List<CartOrderItemEntity>();
-			foreach (CartOrderItemEntity i in itemEntities)
+			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()
+				.ToList().FindAll(i => i.CartId == cartId);
+			return _mapper.Map<List<CartOrderItem>>(sortedItemEntities);
+		}
+
+		public void UpdateCartId(string oldId, string newId)
+		{
+			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()
+				.ToList().FindAll(i => i.CartId == oldId);
+			if (sortedItemEntities.Any())
 			{
-				if (i.CartId == cartId)
+				foreach (CartOrderItemEntity i in sortedItemEntities)
 				{
-					sortedItemEntities.Add(i);
+					i.CartId = newId;
+					_unitOfWork.CartOrderItemRepository.Update(i);
+					_unitOfWork.Save();
+				}
+			}
+		}
+
+		public void SetOrderId(string cartId, int orderId)
+		{
+			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()
+				.ToList().FindAll(i => i.CartId == cartId);
+			if (sortedItemEntities.Any())
+			{
+				foreach (CartOrderItemEntity i in sortedItemEntities)
+				{
+					i.OrderId = orderId;
+					_unitOfWork.CartOrderItemRepository.Update(i);
+					_unitOfWork.Save();
+				}
+			}
+		}
+
+		public decimal CountTotalAmount(string cartId)
+		{
+			decimal totalAmount = 0;
+
+			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()
+				.ToList().FindAll(i => i.CartId == cartId);
+			if (sortedItemEntities.Any())
+			{
+				foreach (CartOrderItemEntity i in sortedItemEntities)
+				{
+					totalAmount += i.Price;
 				}
 			}
 
-			return _mapper.Map<List<CartOrderItem>>(sortedItemEntities);
+			return totalAmount;
 		}
 	}
 }

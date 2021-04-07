@@ -15,5 +15,7 @@ namespace BLL.DTOs
 		public string Description { get => _description; set => _description = value; }
 		public string PicturePath { get => _picturePath; set => _picturePath = value; }
 		public ProductCategory Category { get => _category; set => _category = value; }
+
+
 	}
 }

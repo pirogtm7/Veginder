@@ -16,7 +16,7 @@ namespace BLL
             CreateMap<CartOrderItem, CartOrderItemEntity>()
                 .ReverseMap();
             CreateMap<Order, OrderEntity>()
-                .ForMember(d => d.Items, opt => opt.MapFrom(src => src.Items))
+                .ForMember(d => d.CartOrderItems, opt => opt.MapFrom(src => src.CartOrderItems))
                 .ReverseMap();
             CreateMap<ProductCategory, ProductCategoryEntity>()
                 .ReverseMap();
@@ -25,6 +25,8 @@ namespace BLL
             CreateMap<Shop, ShopEntity>()
                 .ReverseMap();
             CreateMap<Stock, StockEntity>()
+                .ReverseMap();
+            CreateMap<OrderStatus, OrderStatusEntity>()
                 .ReverseMap();
         }
     }

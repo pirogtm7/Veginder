@@ -16,13 +16,16 @@ namespace DAL.UnitOfWork
 		public IRepository<ShopEntity> ShopRepository { get; }
 		public IRepository<CartOrderItemEntity> CartOrderItemRepository { get; }
 		public IRepository<StockEntity> StockRepository { get; }
+		public IRepository<OrderStatusEntity> OrderStatusRepository { get; }
+
 
 
 		public UnitOfWork(VeginderDbContext context,
-			IRepository<AddressEntity> addresses, IRepository<OrderEntity> orders, 
+			IRepository<AddressEntity> addresses, IRepository<OrderEntity> orders,
 			IRepository<ProductEntity> products, IRepository<ShopEntity> shops,
 			IRepository<CartOrderItemEntity> cartOrderItems,
-			IRepository<StockEntity> stocks, IRepository<ProductCategoryEntity> categories)
+			IRepository<StockEntity> stocks, IRepository<ProductCategoryEntity> categories, 
+			IRepository<OrderStatusEntity> orderStatusRepository)
 		{
 			_context = context;
 			AddressRepository = addresses;
@@ -32,6 +35,7 @@ namespace DAL.UnitOfWork
 			CartOrderItemRepository = cartOrderItems;
 			StockRepository = stocks;
 			ProductCategoryRepository = categories;
+			OrderStatusRepository = orderStatusRepository;
 		}
 
 		public void Save()

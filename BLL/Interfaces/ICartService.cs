@@ -7,7 +7,12 @@ namespace BLL.Interfaces
 {
 	public interface ICartService
 	{
-		void AddItemToCart(CartOrderItem item);
+		void AddItemToCart(Stock stock, int quantity, string cartId);
+		void RemoveItemFromCart(int itemId, int stockId);
+		void DeleteItem(int itemId, int stockId);
 		List<CartOrderItem> GetAllItemsFromCart(string cartId);
+		void UpdateCartId(string oldId, string newId);
+		void SetOrderId(string cartId, int orderId);
+		decimal CountTotalAmount(string cartId);
 	}
 }
