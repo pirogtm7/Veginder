@@ -18,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
+using Stripe;
 
 namespace Veginder
 {
@@ -45,14 +46,16 @@ namespace Veginder
 			services.AddScoped<IRepository<ShopEntity>, Repository<ShopEntity>>();
 			services.AddScoped<IRepository<StockEntity>, Repository<StockEntity>>();
 			services.AddScoped<IRepository<CartOrderItemEntity>, Repository<CartOrderItemEntity>>();
+			services.AddScoped<IRepository<OrderStatusEntity>, Repository<OrderStatusEntity>>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddSingleton(new MapperConfiguration(c => c.AddProfile(new BLL.Mapper())).CreateMapper());
 			services.AddTransient<IShopService, ShopService>();
 			services.AddTransient<ICategoryService, CategoryService>();
 			services.AddTransient<ICartService, CartService>();
 			services.AddTransient<IStockService, StockService>();
+			services.AddTransient<IOrderService, BLL.Services.OrderService>();
 
-			services.AddIdentity<UserEntity, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
+			services.AddIdentity<UserEntity, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = true)
 					.AddEntityFrameworkStores<VeginderDbContext>()
 					.AddDefaultTokenProviders();
 			
@@ -65,12 +68,15 @@ namespace Veginder
 				options.Cookie.IsEssential = true;
 			});
 
-			services.AddControllersWithViews();			
+			services.AddControllersWithViews().AddNewtonsoftJson();	
+			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			StripeConfiguration.ApiKey = "sk_test_51IcTtIFuedvS3hDs6D54vfMKKntIr82yCx8KrdQt6Eu7sB3xqfMRvhOYGGBaneLcwUIhkqn4LFZDdTZ3UMR2O8sH00PTOfvuI2";
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -83,9 +89,9 @@ namespace Veginder
 			}
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
 			app.UseRouting();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 			
 			app.UseSession();

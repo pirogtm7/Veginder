@@ -15,6 +15,8 @@ namespace DAL.Entities
 		private string _cartId;
 		private StockEntity _stock;
 		private int _stockId;
+		private OrderEntity _order;
+		private int? _orderId;
 
 		public decimal Price { get => _price; set => _price = value; }
 		[Range(1, double.MaxValue, ErrorMessage = "Quantity must be at least 1")]
@@ -23,5 +25,8 @@ namespace DAL.Entities
 		public string CartId { get => _cartId; set => _cartId = value; }
 		public virtual StockEntity Stock { get => _stock; set => _stock = value; }
 		public int StockId { get => _stockId; set => _stockId = value; }
+		//[ForeignKey("OrderEntity")]
+		public int? OrderId { get => _orderId; set => _orderId = value; }
+		public virtual OrderEntity Order { get => _order; set => _order = value; }
 	}
 }

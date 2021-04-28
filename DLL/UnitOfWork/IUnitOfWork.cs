@@ -16,6 +16,7 @@ namespace DAL.UnitOfWork
 		IRepository<ShopEntity> ShopRepository { get; }
 		IRepository<CartOrderItemEntity> CartOrderItemRepository { get; }
 		IRepository<StockEntity> StockRepository { get; }
+		IRepository<OrderStatusEntity> OrderStatusRepository { get; }
 
 		void Save();
 	}

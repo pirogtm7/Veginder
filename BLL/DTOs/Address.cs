@@ -9,11 +9,11 @@ namespace BLL.DTOs
 		private string _fullName;
 		private string _street;
 		private string _city;
-		private int _zip;
+		private string _zip;
 
 		public string FullName { get => _fullName; set => _fullName = value; }
 		public string Street { get => _street; set => _street = value; }
 		public string City { get => _city; set => _city = value; }
-		public int Zip { get => _zip; set => _zip = value; }
+		public string Zip { get => _zip; set => _zip = value; }
 	}
 }

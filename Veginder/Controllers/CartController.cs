@@ -1,6 +1,8 @@
 ﻿using BLL.DTOs;
 using BLL.Interfaces;
+using DAL.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,56 +14,76 @@ namespace Veginder.Controllers
 {
 	public class CartController : Controller
 	{
-		IShopService _shopService;
 		IStockService _stockService;
 		ICartService _cartService;
+		private readonly UserManager<UserEntity> _userManager;
 		public const string CartSessionKey = "CartId";
 
-		public CartController(ICartService cartService, 
-			IShopService shopService, IStockService stockService)
+		public CartController(ICartService cartService,
+			IStockService stockService, UserManager<UserEntity> userManager)
 		{
 			_cartService = cartService;
-			_shopService = shopService;
 			_stockService = stockService;
+			_userManager = userManager;
 		}
 
-		public IActionResult AddItemToCart(int stockId, int quantity)
+		public IActionResult AddItemToCartFromProductPage(int stockId, int quantity)
 		{
 			Stock stock = _stockService.GetStockById(stockId);
 
-			CartOrderItem item = new CartOrderItem()
+			if (quantity <= stock.Quantity)
 			{
-				StockId = stockId,
-				Quantity = quantity,
-				CartId = GetCartId(),
-				Price = stock.Price * quantity
-			};
-
-			_cartService.AddItemToCart(item);
+				_cartService.AddItemToCart(stock, quantity, GetCartId().Result);
+			}
 
 			return RedirectToAction("ShowProduct", "Product", new { stockId });
 		}
 
+		public IActionResult AddItemToCartByPlus(int stockId)
+		{
+			Stock stock = _stockService.GetStockById(stockId);
+
+			if (stock.Quantity >= 1)
+			{
+				_cartService.AddItemToCart(stock, 1, GetCartId().Result);
+			}
+
+			return RedirectToAction("Cart", "Cart");
+		}
+
+		public IActionResult RemoveItemFromCartByMinus(int itemId, int stockId)
+		{
+			_cartService.RemoveItemFromCart(itemId, stockId);
+			return RedirectToAction("Cart", "Cart");
+		}
+
+		public IActionResult RemoveItemFromCartByX(int itemId, int stockId)
+		{
+			_cartService.DeleteItem(itemId, stockId);
+			return RedirectToAction("Cart", "Cart");
+		}
+
 		public IActionResult Cart()
 		{
-			CartModel model = new CartModel(_cartService.GetAllItemsFromCart(GetCartId()));
+			CartModel model = new CartModel(_cartService.GetAllItemsFromCart(GetCartId().Result));
 			return View(model);
 		}
 
-		public string GetCartId()
+		public async Task<string> GetCartId()
 		{
-			if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString(CartSessionKey)))
+			if (HttpContext.User.Identity.IsAuthenticated)
 			{
-				if (!string.IsNullOrWhiteSpace(HttpContext.User.Identity.Name))
-				{
-					HttpContext.Session.SetString(CartSessionKey, HttpContext.User.Identity.Name);
-				}
-				else
-				{
-					Guid tempCartId = Guid.NewGuid();
-					HttpContext.Session.SetString(CartSessionKey, tempCartId.ToString());
-				}
+				var user = await _userManager.GetUserAsync(User);
+
+				return user.Email;
 			}
+
+			else if (string.IsNullOrWhiteSpace(HttpContext.Session.GetString(CartSessionKey)))
+			{
+				Guid tempCartId = Guid.NewGuid();
+				HttpContext.Session.SetString(CartSessionKey, tempCartId.ToString());
+			}
+
 			return HttpContext.Session.GetString(CartSessionKey);
 		}
 	}

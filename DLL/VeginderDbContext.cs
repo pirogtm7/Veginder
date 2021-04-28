@@ -16,6 +16,7 @@ namespace DAL
 		public DbSet<ShopEntity> Shops { get; set; }
 		public DbSet<CartOrderItemEntity> CartOrderItems { get; set; }
 		public DbSet<StockEntity> Stocks { get; set; }
+		public DbSet<OrderStatusEntity> OrderStatuses { get; set; }
 
 
 		public VeginderDbContext(DbContextOptions<VeginderDbContext> options) : base(options)

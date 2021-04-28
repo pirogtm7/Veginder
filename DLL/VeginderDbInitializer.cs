@@ -18,6 +18,13 @@ namespace DAL
 			context.Database.EnsureDeleted();
 			context.Database.EnsureCreated();
 
+			OrderStatusEntity pending = new OrderStatusEntity() { Name = "Pending" };
+			OrderStatusEntity paymentReceived = new OrderStatusEntity() { Name = "Payment received" };
+			OrderStatusEntity paymentFailed = new OrderStatusEntity() { Name = "Payment failed" };
+			OrderStatusEntity sent = new OrderStatusEntity() { Name = "Sent" };
+			OrderStatusEntity delivered = new OrderStatusEntity() { Name = "Delivered" };
+
+
 			ProductCategoryEntity dairy = new ProductCategoryEntity() { Name = "Dairy" };
 			ProductCategoryEntity drinks = new ProductCategoryEntity() { Name = "Drinks" };
 			ProductCategoryEntity fish = new ProductCategoryEntity() { Name = "Fish" };
@@ -370,7 +377,7 @@ namespace DAL
 				Shop = biomatica,
 				Product = bellpepper,
 				Price = 34,
-				Quantity = 20
+				Quantity = 3
 			};
 
 			StockEntity biomatica5 = new StockEntity()
@@ -462,6 +469,8 @@ namespace DAL
 				Quantity = 20
 			};
 
+			context.OrderStatuses.AddRange(new List<OrderStatusEntity> { pending, paymentReceived, paymentFailed, sent, delivered });
+			
 			context.Shops.Add(pur);
 
 			context.Stocks.AddRange(new List<StockEntity> {biobio1, biobio2, biobio3, biobio4, biobio5, biobio6,
