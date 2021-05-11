@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
+using BLL.Exceptions;
 using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
@@ -12,6 +13,15 @@ namespace BLL.Services
 {
 	public class StockService : IStockService
 	{
+		public void CheckStock(int id)
+		{
+			Stock stock = GetStockById(id);
+			if (stock.Quantity == 0)
+			{
+				throw new ItemNotInStockException("There's no items in stock!");
+			}
+		}
+
 		private readonly IUnitOfWork _unitOfWork;
 		IMapper _mapper;
 
@@ -33,5 +43,7 @@ namespace BLL.Services
 			Stock stock = _mapper.Map<Stock>(stockEntity);
 			return stock;
 		}
+
+		
 	}
 }

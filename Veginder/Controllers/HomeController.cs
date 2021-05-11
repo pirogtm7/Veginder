@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BLL.Exceptions;
 using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
@@ -18,13 +19,15 @@ namespace Veginder.Controllers
 		private readonly ILogger<HomeController> _logger;
 		IShopService _shopService;
 		ICategoryService _categoryService;
+		IStockService stockService;
 
 		public HomeController(ILogger<HomeController> logger,
-			IShopService shopService, ICategoryService categoryService)
+			IShopService shopService, ICategoryService categoryService, IStockService stockService)
 		{
 			_logger = logger;
 			_shopService = shopService;
 			_categoryService = categoryService;
+			this.stockService = stockService;
 		}
 
 		[HttpGet]
@@ -35,6 +38,14 @@ namespace Veginder.Controllers
 			//	.Include(s => s.Product)
 			//	.ToList();
 
+			try
+			{
+				stockService.CheckStock(0);
+			}
+			catch (ItemNotInStockException e)
+			{
+				Debug.WriteLine(e.Message); 
+			}
 
 
 			HomePageModel model = new HomePageModel(_shopService.GetAllShops().ToList(),
