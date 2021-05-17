@@ -97,7 +97,7 @@ namespace BLL.Services
 				.ToList().FindAll(i => i.CartId == cartId);
 			return _mapper.Map<List<CartOrderItem>>(sortedItemEntities);
 		}
-
+  
 		public void UpdateCartId(string oldId, string newId)
 		{
 			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()

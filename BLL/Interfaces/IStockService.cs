@@ -10,6 +10,5 @@ namespace BLL.Interfaces
 		//int GetProductShopId(int productId);
 		IEnumerable<Stock> GetAllStocks();
 		Stock GetStockById(int id);
-		void CheckStock(int id);
 	}
 }

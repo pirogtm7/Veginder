@@ -38,16 +38,6 @@ namespace Veginder.Controllers
 			//	.Include(s => s.Product)
 			//	.ToList();
 
-			try
-			{
-				stockService.CheckStock(0);
-			}
-			catch (ItemNotInStockException e)
-			{
-				Debug.WriteLine(e.Message); 
-			}
-
-
 			HomePageModel model = new HomePageModel(_shopService.GetAllShops().ToList(),
 				_categoryService.GetAllCategories().ToList());
 			return View(model);
