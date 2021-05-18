@@ -1,5 +1,6 @@
 ﻿using Autofac.Extras.Moq;
 using AutoMapper;
+using BLL;
 using BLL.DTOs;
 using BLL.Interfaces;
 using BLL.Services;
@@ -10,6 +11,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace VeginderTests.BLLTests
@@ -17,38 +19,20 @@ namespace VeginderTests.BLLTests
     [TestFixture]
     public class CartServiceTests
     {
-		IMapper mapper;
+		Mapper _mapper;
 		Mock<IUnitOfWork> mockUOF;
 		ICartService cartService;
         #region data
-        static ProductCategory dairy = new ProductCategory() { Name = "Dairy" };
-		static Product cheese = new Product()
-		{
-			Id = 1, 
-			Name = "Cheese",
-			Description = "desc2",
-			PicturePath = "https://drive.google.com/uc?id=1yUI_gGS0TZrpf_Dx7ricb8X9hJuY2gX3",
-			Category = dairy
-		};
-		static Shop biobio = new Shop()
-		{
-			Id = 1,
-			Name = "Bio&Bio",
-			Description = "Lorem ipsum dolor sit amet",
-			PicturePath = "https://drive.google.com/uc?id=1RUcT1Y3Kog5g6zOVbYoM4FxTz6Nqxqni",
-			Address = "address1",
-		};
 		static Stock s = new Stock()
 		{
 			Id = 1,
 			Price = 4,
-			Quantity = 2,
-			Shop = biobio,
-			Product = cheese
+			Quantity = 2
 		};		
-		CartOrderItemEntity c = new CartOrderItemEntity()
+		CartOrderItem c = new CartOrderItem()
 		{
 			Id = 1,
+			Stock = s,
 			StockId = 1,
 			Quantity = 1,
 			CartId = "4596490f-524f-4af2-bf72-16f15bd78831",
@@ -59,63 +43,52 @@ namespace VeginderTests.BLLTests
 			new CartOrderItem()
 			{
 				StockId = s.Id,
+				Stock = s,
 				Quantity = 1,
 				CartId = "4596490f-524f-4af2-bf72-16f15bd78831",
 				Price = 4
 			},
 			new CartOrderItem()
-			{	
+			{
 				StockId = 2,
+				Stock = s,
 				Quantity = 1,
 				CartId = "4596490f-524f-4af2-bf72-16f15bd78831",
 				Price = 5
 			}
 		};
+
 		List<CartOrderItemEntity> entities;
-		static Order order = new Order()
-		{
-			Id = 1,
-			Email = "lalala@gmail.com",
-			TotalAmount = expectedfullList[0].Price+expectedfullList[1].Price,
-			OrderStatusId = 0
-		};
+		CartOrderItemEntity cartorderitementity;
+		StockEntity stockentity;
 		#endregion
+
+		public static Mapper CreateMapperProfile()
+		{
+			var myProfile = new CustomMapper();
+			var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+
+			return new Mapper(configuration);
+		}
 
 		[SetUp]
 		public void SetUp()
         {
-			var mapperConfig = new MapperConfiguration(
-				  opts => opts.CreateMap<CartOrderItem, CartOrderItemEntity>().ReverseMap());
+			_mapper = CreateMapperProfile();
 
-			mapper = mapperConfig.CreateMapper();
-
-			entities = mapper.Map<List<CartOrderItemEntity>>(expectedfullList);
+			entities = _mapper.Map<List<CartOrderItemEntity>>(expectedfullList);
+			stockentity = _mapper.Map<StockEntity>(s);
+			cartorderitementity = _mapper.Map<CartOrderItemEntity>(c);
 
 			mockUOF = new Mock<IUnitOfWork>();
 			mockUOF.Setup(x => x.CartOrderItemRepository.GetAll())
 				.Returns(entities);
+			mockUOF.Setup(x => x.CartOrderItemRepository.Get(cartorderitementity.Id))
+				.Returns(cartorderitementity);
+			mockUOF.Setup(x => x.StockRepository.Get(stockentity.Id))
+				.Returns(stockentity);
 
-			cartService = new CartService(mockUOF.Object, mapper);
-		}
-
-
-		[Test]
-		public void AddItemToCart_NoItemInCart_ItemAdded()
-		{
-			//Arrange
-			var expectedDTO = new List<CartOrderItem>();
-			var expectedEntities = mapper.Map<List<CartOrderItemEntity>>(expectedDTO);
-			var mockUOF = new Mock<IUnitOfWork>();
-			mockUOF.Setup(x => x.CartOrderItemRepository.Add(c)).Verifiable();
-			mockUOF.Setup(x => x.StockRepository.Get(c.StockId)).Returns(mapper.Map<StockEntity>(s));
-
-            cartService = new CartService(mockUOF.Object, mapper);
-
-			//Act
-			cartService.AddItemToCart(s, 1, "4596490f-524f-4af2-bf72-16f15bd78831");
-
-			//Assert
-			mockUOF.Verify(x => x.CartOrderItemRepository.Add(c), Times.Once);
+			cartService = new CartService(mockUOF.Object, _mapper);
 		}
 
 		[Test]
@@ -137,8 +110,8 @@ namespace VeginderTests.BLLTests
 
 		}
 
-		[TestCase("4596490f-524f-4af2-bf72-16f15bd78831")]//pass
 		//[TestCase(null)]//fail
+		[TestCase("4596490f-524f-4af2-bf72-16f15bd78831")]//pass
 		public void CountTotalAmount_IdCartPassed_TotalAmountReturned(string? cartId)
         {
 			//arrange
@@ -184,6 +157,53 @@ namespace VeginderTests.BLLTests
 				mockUOF.Verify(x => x.CartOrderItemRepository.Update(entities[0]), Times.Once);
             }
 			mockUOF.Verify(x => x.Save(), Times.Exactly(entities.Count));
+		}
+		
+		[Test]
+		public void DeleteItem_ItemDeleted_StockQuantityIncrease()
+        {
+			//arrange
+			var expectedQuantity = s.Quantity+1;
+
+			//act
+			cartService.DeleteItem(cartorderitementity.Id, stockentity.Id);
+
+			//assert
+			Assert.AreEqual(expectedQuantity, stockentity.Quantity);
+		}
+
+		[Test]
+		public void RemoveItemFromCart_2ItemsInCartItemDeleted_StockQuantityIncrease()
+		//if 1 item in cart - refer to DeleteItem_ItemDeleted_StockQuantityIncrease test
+		{
+			//arrange
+			cartorderitementity.Quantity += 1;
+			var expectedQuantity = s.Quantity + 1;
+
+			//act
+			cartService.RemoveItemFromCart(cartorderitementity.Id, stockentity.Id);
+
+			//assert
+			Assert.AreEqual(expectedQuantity, stockentity.Quantity);
+		}
+
+		[TestCase(null)]//no items in cart
+		[TestCase("4596490f-524f-4af2-bf72-16f15bd78831")]//1 item in cart
+		public void AddItemToCart_1ItemInCart_StockQuantityDecrease(string cartId)
+		{
+			//Arrange
+			var cartorderitementities = _mapper.Map<List<CartOrderItemEntity>>(expectedfullList);
+
+			mockUOF.Setup(x => x.CartOrderItemRepository.GetAll())				
+					.Returns(cartorderitementities);
+			
+			var expectedQuantity = s.Quantity - 1;
+
+			//Act
+			cartService.AddItemToCart(s, 1, cartId);
+
+			//Assert
+			Assert.AreEqual(expectedQuantity, stockentity.Quantity);
 		}
 	}
 }
