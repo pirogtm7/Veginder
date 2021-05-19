@@ -45,18 +45,11 @@ namespace VeginderTests.BLLTests
 		};
 		List<StockEntity> stockEntities;
 		#endregion
-		public static Mapper CreateMapperProfile()
-		{
-			var myProfile = new CustomMapper();
-			var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
-
-			return new Mapper(configuration);
-		}
-
+	
 		[SetUp]
 		public void SetUp()
 		{
-			_mapper = CreateMapperProfile();
+			_mapper = UnitTestsHelper.CreateMapperProfile();
 			stockEntities = _mapper.Map<List<StockEntity>>(expectedfullList);
 
 			mockUOF = new Mock<IUnitOfWork>();
