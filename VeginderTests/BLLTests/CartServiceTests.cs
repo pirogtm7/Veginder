@@ -92,7 +92,7 @@ namespace VeginderTests.BLLTests
 		}
 
 		[Test]
-		public void GetAllItemsFromCart_IdCartPassed_ListOfItemsReturned()
+		public void GetAllItemsFromCart_IdCartPassed_ListOfItemsIsEqual()
 		{
 			//arrange
 
@@ -146,7 +146,7 @@ namespace VeginderTests.BLLTests
         {
 			//arrange
 			var cartId = expectedfullList[0].CartId;
-			var orderId = order.Id;
+			var orderId = 1;
 
 			//act
 			cartService.SetOrderId(cartId, orderId);
