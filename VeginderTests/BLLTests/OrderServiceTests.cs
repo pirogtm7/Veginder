@@ -164,7 +164,8 @@ namespace VeginderTests.BLLTests
         {
             //arrange
             var email = "lalala@gmail.com";
-            mockUOF.Setup(x => x.OrderRepository.GetAll()).Returns(_mapper.Map<List<OrderEntity>>(orders));
+            mockUOF.Setup(x => x.OrderRepository.GetAll())
+                .Returns(_mapper.Map<List<OrderEntity>>(orders));
 
             //act
             var actual = orderService.GetAllOrdersFromEmail(email).ToList();
