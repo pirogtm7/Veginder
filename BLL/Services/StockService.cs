@@ -14,14 +14,6 @@ namespace BLL.Services
 	public class StockService : IStockService
 	{
 
-		{
-			Stock stock = GetStockById(id);
-			if (stock.Quantity == 0)
-			{
-				throw new ItemNotInStockException("There's no items in stock!");
-			}
-		}
-
 		private readonly IUnitOfWork _unitOfWork;
 		IMapper _mapper;
 
