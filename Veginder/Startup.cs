@@ -48,7 +48,7 @@ namespace Veginder
 			services.AddScoped<IRepository<CartOrderItemEntity>, Repository<CartOrderItemEntity>>();
 			services.AddScoped<IRepository<OrderStatusEntity>, Repository<OrderStatusEntity>>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
-			services.AddSingleton(new MapperConfiguration(c => c.AddProfile(new BLL.Mapper())).CreateMapper());
+			services.AddSingleton(new MapperConfiguration(c => c.AddProfile(new BLL.CustomMapper())).CreateMapper());
 			services.AddTransient<IShopService, ShopService>();
 			services.AddTransient<ICategoryService, CategoryService>();
 			services.AddTransient<ICartService, CartService>();

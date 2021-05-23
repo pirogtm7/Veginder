@@ -237,7 +237,7 @@ select.grid-control-field {
 
 .grid {
     position: relative;
-    max-width: 96rem;
+    max-width: 150rem;
     padding-bottom: 3rem;
     box-sizing: content-box;
     -webkit-user-select: none;

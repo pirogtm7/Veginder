@@ -7,9 +7,9 @@ using System.Text;
 
 namespace BLL
 {
-	public class Mapper : Profile
+	public class CustomMapper : Profile
 	{
-        public Mapper()
+        public CustomMapper()
         {
             CreateMap<Address, AddressEntity>()
                 .ReverseMap();

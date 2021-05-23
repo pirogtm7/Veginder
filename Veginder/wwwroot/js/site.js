@@ -6,8 +6,9 @@
     const sortField = document.querySelector('.grid-control-field.sort-field');
    // const addButton = document.querySelector('.grid-button.add-more-items');
     const itemTemplate = document.querySelector('.grid-item-template');
-    const characters = 'abcdefghijklmnopqrstuvwxyz';
-    const colors = ['red', 'blue', 'green'];
+    //const characters = 'abcdefghijklmnopqrstuvwxyz';
+    //const colors = ['red', 'blue', 'green'];
+    const shops = $('#shops').filterMultiSelect();
 
     let dragOrder = [];
     let sortFieldValue;

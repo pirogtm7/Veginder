@@ -25,7 +25,7 @@ namespace BLL.Services
 		public void AddItemToCart(Stock stock, int quantity, string cartId)
 		{
 			CartOrderItemEntity itemEntity = _unitOfWork.CartOrderItemRepository.GetAll().ToList().Find(
-				i => i.CartId == cartId && i.StockId == stock.Id);
+						i => i.CartId == cartId && i.StockId == stock.Id);
 
 			if (itemEntity != null)
 			{
@@ -81,8 +81,7 @@ namespace BLL.Services
 		public void DeleteItem(int itemId, int stockId)
 		{
 			int quantity = _unitOfWork.CartOrderItemRepository.Get(itemId).Quantity;
-			_unitOfWork.CartOrderItemRepository.Delete(itemId);
-
+ 
 			StockEntity stockEntity = _unitOfWork.StockRepository.Get(stockId);
 			stockEntity.Quantity += quantity;
 			_unitOfWork.StockRepository.Update(stockEntity);
@@ -97,7 +96,7 @@ namespace BLL.Services
 				.ToList().FindAll(i => i.CartId == cartId);
 			return _mapper.Map<List<CartOrderItem>>(sortedItemEntities);
 		}
-
+  
 		public void UpdateCartId(string oldId, string newId)
 		{
 			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()
@@ -134,6 +133,7 @@ namespace BLL.Services
 
 			List<CartOrderItemEntity> sortedItemEntities = _unitOfWork.CartOrderItemRepository.GetAll()
 				.ToList().FindAll(i => i.CartId == cartId);
+			
 			if (sortedItemEntities.Any())
 			{
 				foreach (CartOrderItemEntity i in sortedItemEntities)
