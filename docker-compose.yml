@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  veginder:
+    image: ${DOCKER_REGISTRY-}veginder
+    build:
+      context: .
+      dockerfile: Veginder/Dockerfile
