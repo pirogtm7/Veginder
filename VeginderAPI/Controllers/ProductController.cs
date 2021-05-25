@@ -10,7 +10,7 @@ using Veginder.Models;
 
 namespace VeginderAPI.Controllers
 {
-	[Route("api/Product")]
+    [Route("api/Product")]
 	[ApiController]
 	public class ProductController : ControllerBase
 	{

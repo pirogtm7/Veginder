@@ -8,7 +8,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Veginder;
+using VeginderAPI;
 
 namespace IntegrationTests
 {
@@ -496,9 +496,9 @@ namespace IntegrationTests
 				biobio7, biobio8, biobio9, biobio10, biobio11, biobio12, biobio13, biomatica1, biomatica2, biomatica3,
 				biomatica4, biomatica5, biomatica6, biomatica7, biomatica8, greencommon1, greencommon2, greencommon3,
 				greencommon4, greencommon5, greencommon6, greencommon7});
-			context.CartOrderItems.Add(new CartOrderItemEntity 
-			{CartId = ""
-			});
+
+			context.CartOrderItems.Add(new CartOrderItemEntity() { Quantity = 3, CartId = "testId", Stock = greencommon3 });
+			context.CartOrderItems.Add(new CartOrderItemEntity() { Quantity = 1, CartId = "testId", Stock = biobio11 });
 
 			context.SaveChanges();
 		}

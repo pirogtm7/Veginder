@@ -1,4 +1,5 @@
-﻿using BLL.Interfaces;
+﻿using BLL.DTOs;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,16 +22,21 @@ namespace VeginderAPI.Controllers
 		}
 
 		[HttpGet("{cartId}")]
-		public ActionResult<IEnumerable<CartModel>> GetCart(string cartId)
+		public ActionResult<CartModel> GetCart(string cartId)
 		{
 			return Ok(new CartModel(_cartService.GetAllItemsFromCart(cartId)));
 		}
 
-		[HttpDelete("{id}/{stockId}")]
-		public ActionResult DeleteItem(int id, int stockId)
+		[HttpDelete("{itemId}")]
+		public ActionResult DeleteItem(int itemId)
 		{
-			_cartService.DeleteItem(id, stockId);
+			CartOrderItem item = _cartService.GetItemById(itemId);
+			if (item == null)
+			{
+				return BadRequest();
+			}
 
+			_cartService.RemoveItemFromCart(itemId, item.StockId);
 			return NoContent();
 		}
 	}

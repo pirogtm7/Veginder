@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Veginder.Models;
 using FluentAssertions;
-
+using BLL.DTOs;
 
 namespace IntegrationTests.Tests
 {
@@ -17,7 +17,7 @@ namespace IntegrationTests.Tests
     {
         private HttpClient _client;
         private WebAppFactory _factory;
-        private const string RequestUri = "Cart/Cart";
+        private const string RequestUri = "api/Cart/";
 
         [SetUp]
         public void Setup()
@@ -27,15 +27,39 @@ namespace IntegrationTests.Tests
         }
 
         [Test]
-        public async Task CartsController_GetAll_ReturnsCarts()
+        public async Task CartController_GetCartById_ReturnsCart()
         {
-            var httpResponse = await _client.GetAsync(RequestUri);
+            // Arrange
+            var httpResponse = await _client.GetAsync(RequestUri + "testId");
 
+            // Act
             httpResponse.EnsureSuccessStatusCode();
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-            var carts = JsonConvert.DeserializeObject<IEnumerable<CartModel>>(stringResponse);
+            var cart = JsonConvert.DeserializeObject<CartModel>(stringResponse);
 
-            carts.Count().Should().Be(0);
+			//Assert
+			cart.Items.Count.Should().Be(2);
+            foreach (CartOrderItem c in cart.Items)
+			{
+                c.CartId = "testId";
+            }
         }
+
+		[Test]
+		public async Task CartController_DeleteItemById_OneLessItemInCart()
+		{
+            // Arrange
+            var deleteResponse = await _client.DeleteAsync(RequestUri + 2);
+
+            // Act
+            deleteResponse.EnsureSuccessStatusCode();
+            var httpResponse = await _client.GetAsync(RequestUri + "testId");
+            var stringResponse = await httpResponse.Content.ReadAsStringAsync();
+            var cart = JsonConvert.DeserializeObject<CartModel>(stringResponse);
+
+            // Assert
+            cart.Items.Count.Should().Be(1);
+        }
+
     }
 }
