@@ -478,6 +478,9 @@ namespace DAL
 				biomatica4, biomatica5, biomatica6, biomatica7, biomatica8, greencommon1, greencommon2, greencommon3,
 				greencommon4, greencommon5, greencommon6, greencommon7});
 
+			context.CartOrderItems.Add(new CartOrderItemEntity() { Quantity = 3, CartId = "testId", Stock = greencommon3 });
+			context.CartOrderItems.Add(new CartOrderItemEntity() { Quantity = 1, CartId = "testId", Stock = biobio11 });
+
 			context.SaveChanges();
 
 			initialized = true;

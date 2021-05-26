@@ -27,11 +27,22 @@ namespace BLL.Services
 			return shops;
 		}
 
-		//public Shop GetShopById(int id)
-		//{
-		//	ShopEntity shopEntity = _unitOfWork.ShopRepository.Get(id);
-		//	return _mapper.Map<Shop>(shopEntity);
-		//}
+		public void AddShop(Shop shop)
+		{
+			_unitOfWork.ShopRepository.Add(_mapper.Map<ShopEntity>(shop));
+			_unitOfWork.Save();
+		}
+
+		public Shop GetShop(int id)
+		{
+			return _mapper.Map<Shop>(_unitOfWork.ShopRepository.Get(id));
+		}
+
+		public void DeleteShop(int id)
+		{
+			_unitOfWork.ShopRepository.Delete(id);
+			_unitOfWork.Save();
+		}
 
 	}
 }

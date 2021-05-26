@@ -18,6 +18,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeginderTests", "VeginderTests\VeginderTests.csproj", "{B2CEB041-531A-40B4-B469-D5ABC01D3C65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{46C59687-C6A1-45C1-964A-7944F8A8182B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC51CE21-8BF4-44BA-9CC4-F729A182C204} = {BC51CE21-8BF4-44BA-9CC4-F729A182C204}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeginderAPI", "VeginderAPI\VeginderAPI.csproj", "{BC51CE21-8BF4-44BA-9CC4-F729A182C204}"
 EndProject
