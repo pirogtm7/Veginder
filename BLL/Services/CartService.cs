@@ -21,11 +21,6 @@ namespace BLL.Services
 			_mapper = mapper;
 		}
 
-		public CartOrderItem GetItemById(int id)
-		{
-			return _mapper.Map<CartOrderItem>(_unitOfWork.CartOrderItemRepository.Get(id));
-		}
-
 		public void AddItemToCart(Stock stock, int quantity, string cartId)
 		{
 			CartOrderItemEntity itemEntity = _unitOfWork.CartOrderItemRepository.GetAll().ToList().Find(

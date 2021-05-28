@@ -21,14 +21,5 @@ namespace BLL.DTOs
 		public int StockId { get => _stockId; set => _stockId = value; }
 		public int? OrderId { get => _orderId; set => _orderId = value; }
 		public Order Order { get => _order; set => _order = value; }
-
-		//Check if this item has a stockId
-		//public static bool operator &(CartOrderItem item, int stockId)
-		//{
-		//	if (item.StockId == stockId)
-		//		return true;
-		//	else
-		//		return false;
-		//}
 	}
 }

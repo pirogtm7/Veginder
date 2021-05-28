@@ -17,15 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DLL\DAL.csproj", "{9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeginderTests", "VeginderTests\VeginderTests.csproj", "{B2CEB041-531A-40B4-B469-D5ABC01D3C65}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{46C59687-C6A1-45C1-964A-7944F8A8182B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BC51CE21-8BF4-44BA-9CC4-F729A182C204} = {BC51CE21-8BF4-44BA-9CC4-F729A182C204}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeginderAPI", "VeginderAPI\VeginderAPI.csproj", "{BC51CE21-8BF4-44BA-9CC4-F729A182C204}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6E1AC879-3157-451C-A709-F1100441D3AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,18 +39,6 @@ Global
 		{B2CEB041-531A-40B4-B469-D5ABC01D3C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2CEB041-531A-40B4-B469-D5ABC01D3C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2CEB041-531A-40B4-B469-D5ABC01D3C65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46C59687-C6A1-45C1-964A-7944F8A8182B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46C59687-C6A1-45C1-964A-7944F8A8182B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46C59687-C6A1-45C1-964A-7944F8A8182B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46C59687-C6A1-45C1-964A-7944F8A8182B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC51CE21-8BF4-44BA-9CC4-F729A182C204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC51CE21-8BF4-44BA-9CC4-F729A182C204}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC51CE21-8BF4-44BA-9CC4-F729A182C204}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC51CE21-8BF4-44BA-9CC4-F729A182C204}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E1AC879-3157-451C-A709-F1100441D3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E1AC879-3157-451C-A709-F1100441D3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E1AC879-3157-451C-A709-F1100441D3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E1AC879-3157-451C-A709-F1100441D3AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

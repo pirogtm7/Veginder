@@ -14,6 +14,5 @@ namespace BLL.Interfaces
 		void UpdateCartId(string oldId, string newId);
 		void SetOrderId(string cartId, int orderId);
 		decimal CountTotalAmount(string cartId);
-		CartOrderItem GetItemById(int id);
 	}
 }

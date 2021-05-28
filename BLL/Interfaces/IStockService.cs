@@ -7,7 +7,6 @@ namespace BLL.Interfaces
 {
 	public interface IStockService
 	{
-		//int GetProductShopId(int productId);
 		IEnumerable<Stock> GetAllStocks();
 		Stock GetStockById(int id);
 	}

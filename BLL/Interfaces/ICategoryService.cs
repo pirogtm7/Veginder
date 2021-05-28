@@ -8,8 +8,5 @@ namespace BLL.Interfaces
 	public interface ICategoryService
 	{
 		IEnumerable<ProductCategory> GetAllCategories();
-		void AddCategory(ProductCategory category);
-		ProductCategory GetCategory(int id);
-		void DeleteCategory(int id);
 	}
 }

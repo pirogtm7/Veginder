@@ -23,7 +23,6 @@ namespace BLL.Services
 
 		public int AddOrderAndAddress(Order order)
 		{
-			//order.TotalAmount = CountTotalAmount(order);
 			OrderEntity orderEntity = _mapper.Map<OrderEntity>(order);
 			_unitOfWork.OrderRepository.Add(orderEntity);
 
@@ -31,18 +30,6 @@ namespace BLL.Services
 
 			return orderEntity.Id;
 		}
-
-		//public decimal CountTotalAmount(Order order)
-		//{
-		//	decimal totalAmount = 0;
-
-		//	foreach (CartOrderItem i in order.CartOrderItems)
-		//	{
-		//		totalAmount += i.Price;
-		//	}
-
-		//	return totalAmount;
-		//}
 
 		public Order GetOrderById(int orderId)
 		{
@@ -58,7 +45,6 @@ namespace BLL.Services
 			_unitOfWork.Save();
 		}
 
-		//this one is for shop owner
 		public void ChangeOrderStatus(int orderId, int orderStatusId)
 		{
 			OrderEntity orderEntity = _unitOfWork.OrderRepository.Get(orderId);

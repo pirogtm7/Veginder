@@ -8,7 +8,6 @@ namespace BLL.Interfaces
 	public interface IOrderService
 	{
 		int AddOrderAndAddress(Order order);
-		//decimal CountTotalAmount(Order order);
 		Order GetOrderById(int orderId);
 		void AddPaymentToOrder(string id, int orderId);
 		void ChangeOrderStatus(int orderId, int orderStatusId);

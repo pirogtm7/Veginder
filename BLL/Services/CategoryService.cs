@@ -25,23 +25,5 @@ namespace BLL.Services
 			IEnumerable<ProductCategoryEntity> categEntities = _unitOfWork.ProductCategoryRepository.GetAll();
 			return _mapper.Map<IEnumerable<ProductCategory>>(categEntities);
 		}
-
-		public void AddCategory(ProductCategory category)
-		{
-			_unitOfWork.ProductCategoryRepository.Add(
-				_mapper.Map<ProductCategoryEntity>(category));
-			_unitOfWork.Save();
-		}
-
-		public ProductCategory GetCategory(int id)
-		{
-			return _mapper.Map<ProductCategory>(_unitOfWork.ProductCategoryRepository.Get(id));
-		}
-
-		public void DeleteCategory(int id)
-		{
-			_unitOfWork.ProductCategoryRepository.Delete(id);
-			_unitOfWork.Save();
-		}
 	}
 }
