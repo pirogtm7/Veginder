@@ -19,20 +19,9 @@ namespace Veginder.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Products(int? shopId, int? categoryId)
+		public IActionResult Products()
 		{
 			StocksModel model = new StocksModel(_stockService.GetAllStocks().ToList());
-
-			//probably should do filtering in html/css/js, not here
-			//if so, add id's to the model and move if's to html
-			if (shopId != null)
-			{
-				//filter by shop 
-			}
-			else if (categoryId != null)
-			{
-				//filter by category
-			}
 
 			return View(model);
 		}

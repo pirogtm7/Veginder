@@ -9,7 +9,6 @@ namespace DAL.UnitOfWork
 	public interface IUnitOfWork
 	{
 		IRepository<AddressEntity> AddressRepository { get; }
-		//IRepository<CartEntity> CartRepository { get; }
 		IRepository<OrderEntity> OrderRepository { get; }
 		IRepository<ProductCategoryEntity> ProductCategoryRepository { get; }
 		IRepository<ProductEntity> ProductRepository { get; }

@@ -85,7 +85,8 @@ namespace BLL.Services
 		public void DeleteItem(int itemId, int stockId)
 		{
 			int quantity = _unitOfWork.CartOrderItemRepository.Get(itemId).Quantity;
- 
+			_unitOfWork.CartOrderItemRepository.Delete(itemId);
+
 			StockEntity stockEntity = _unitOfWork.StockRepository.Get(stockId);
 			stockEntity.Quantity += quantity;
 			_unitOfWork.StockRepository.Update(stockEntity);

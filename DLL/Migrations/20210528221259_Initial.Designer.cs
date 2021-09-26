@@ -10,18 +10,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(VeginderDbContext))]
-    [Migration("20210325123803_CartUpdate")]
-    partial class CartUpdate
+    [Migration("20210528221259_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
+                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DLL.Entities.AddressEntity", b =>
+            modelBuilder.Entity("DAL.Entities.AddressEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,82 +29,58 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Zip")
-                        .HasColumnType("int");
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeliveryContextEntities");
+                    b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("DLL.Entities.CartEntity", b =>
+            modelBuilder.Entity("DAL.Entities.CartOrderItemEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CartContextEntities");
-                });
-
-            modelBuilder.Entity("DLL.Entities.CartOrderItemEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CartEntityId")
-                        .HasColumnType("int");
 
                     b.Property<string>("CartId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
-
-                    b.Property<int?>("OrderEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PicturePath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ShopId")
+                    b.Property<int>("StockId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartEntityId");
+                    b.HasIndex("OrderId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("StockId");
 
-                    b.HasIndex("OrderEntityId");
-
-                    b.HasIndex("ShopId");
-
-                    b.ToTable("CartOrderItemContextEntities");
+                    b.ToTable("CartOrderItems");
                 });
 
-            modelBuilder.Entity("DLL.Entities.OrderEntity", b =>
+            modelBuilder.Entity("DAL.Entities.OrderEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -114,28 +90,32 @@ namespace DAL.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderStatus")
+                    b.Property<int>("OrderStatusId")
                         .HasColumnType("int");
+
+                    b.Property<string>("PaymentIntentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("CartId");
+                    b.HasIndex("OrderStatusId");
 
-                    b.ToTable("OrderContextEntities");
+                    b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("DLL.Entities.ProductCategoryEntity", b =>
+            modelBuilder.Entity("DAL.Entities.OrderStatusEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,10 +127,26 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategoryContextEntities");
+                    b.ToTable("OrderStatuses");
                 });
 
-            modelBuilder.Entity("DLL.Entities.ProductEntity", b =>
+            modelBuilder.Entity("DAL.Entities.ProductCategoryEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("DAL.Entities.ProductEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -164,22 +160,21 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PicturePath")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductContextEntities");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DLL.Entities.ShopEntity", b =>
+            modelBuilder.Entity("DAL.Entities.ShopEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,6 +188,7 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PicturePath")
@@ -200,15 +196,18 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShopContextEntities");
+                    b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("DLL.Entities.StockEntity", b =>
+            modelBuilder.Entity("DAL.Entities.StockEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
@@ -225,10 +224,10 @@ namespace DAL.Migrations
 
                     b.HasIndex("ShopId");
 
-                    b.ToTable("StockContextEntities");
+                    b.ToTable("Stocks");
                 });
 
-            modelBuilder.Entity("DLL.Entities.UserEntity", b =>
+            modelBuilder.Entity("DAL.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -248,6 +247,7 @@ namespace DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -427,60 +427,56 @@ namespace DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DLL.Entities.CartOrderItemEntity", b =>
+            modelBuilder.Entity("DAL.Entities.CartOrderItemEntity", b =>
                 {
-                    b.HasOne("DLL.Entities.CartEntity", null)
-                        .WithMany("ItemEntities")
-                        .HasForeignKey("CartEntityId");
+                    b.HasOne("DAL.Entities.OrderEntity", "Order")
+                        .WithMany("CartOrderItems")
+                        .HasForeignKey("OrderId");
 
-                    b.HasOne("DLL.Entities.ProductCategoryEntity", "Category")
+                    b.HasOne("DAL.Entities.StockEntity", "Stock")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DLL.Entities.OrderEntity", null)
-                        .WithMany("ItemEntities")
-                        .HasForeignKey("OrderEntityId");
+                    b.Navigation("Order");
 
-                    b.HasOne("DLL.Entities.ShopEntity", "Shop")
-                        .WithMany()
-                        .HasForeignKey("ShopId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Shop");
+                    b.Navigation("Stock");
                 });
 
-            modelBuilder.Entity("DLL.Entities.OrderEntity", b =>
+            modelBuilder.Entity("DAL.Entities.OrderEntity", b =>
                 {
-                    b.HasOne("DLL.Entities.AddressEntity", "Address")
+                    b.HasOne("DAL.Entities.AddressEntity", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("DLL.Entities.CartEntity", "Cart")
+                    b.HasOne("DAL.Entities.OrderStatusEntity", "OrderStatus")
                         .WithMany()
-                        .HasForeignKey("CartId");
+                        .HasForeignKey("OrderStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Address");
 
-                    b.Navigation("Cart");
+                    b.Navigation("OrderStatus");
                 });
 
-            modelBuilder.Entity("DLL.Entities.ProductEntity", b =>
+            modelBuilder.Entity("DAL.Entities.ProductEntity", b =>
                 {
-                    b.HasOne("DLL.Entities.ProductCategoryEntity", "Category")
+                    b.HasOne("DAL.Entities.ProductCategoryEntity", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("DLL.Entities.StockEntity", b =>
+            modelBuilder.Entity("DAL.Entities.StockEntity", b =>
                 {
-                    b.HasOne("DLL.Entities.ProductEntity", "Product")
+                    b.HasOne("DAL.Entities.ProductEntity", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("DLL.Entities.ShopEntity", "Shop")
+                    b.HasOne("DAL.Entities.ShopEntity", "Shop")
                         .WithMany()
                         .HasForeignKey("ShopId");
 
@@ -500,7 +496,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("DLL.Entities.UserEntity", null)
+                    b.HasOne("DAL.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -509,7 +505,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("DLL.Entities.UserEntity", null)
+                    b.HasOne("DAL.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -524,7 +520,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DLL.Entities.UserEntity", null)
+                    b.HasOne("DAL.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -533,21 +529,16 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("DLL.Entities.UserEntity", null)
+                    b.HasOne("DAL.Entities.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DLL.Entities.CartEntity", b =>
+            modelBuilder.Entity("DAL.Entities.OrderEntity", b =>
                 {
-                    b.Navigation("ItemEntities");
-                });
-
-            modelBuilder.Entity("DLL.Entities.OrderEntity", b =>
-                {
-                    b.Navigation("ItemEntities");
+                    b.Navigation("CartOrderItems");
                 });
 #pragma warning restore 612, 618
         }

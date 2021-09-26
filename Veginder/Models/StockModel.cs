@@ -10,7 +10,6 @@ namespace Veginder.Models
 	public class StockModel
 	{
 		public Stock Stock;
-		//[Range(1, double.MaxValue, ErrorMessage = "Quantity must be at least 1")]
 		public int Quantity = 1;
 
 		public StockModel(Stock stock)

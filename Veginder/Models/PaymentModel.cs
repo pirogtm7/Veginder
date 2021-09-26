@@ -9,6 +9,6 @@ namespace Veginder.Models
 	public class PaymentModel
 	{
 		public Order Order { get; set; } 
-		public decimal TotalAmount { get; set; }
+		public decimal TotalAmount { get; set; }  
 	}
 }

@@ -148,11 +148,9 @@ namespace Veginder.Controllers
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("testweblab6@gmail.com", "Test123!");
+            smtp.Credentials = new System.Net.NetworkCredential("testweblab6@gmail.com", "tktivfvbhqbldrtr");
             smtp.EnableSsl = true;
             smtp.Send(mail);
         }
-
-
     }
 }

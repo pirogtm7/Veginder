@@ -35,7 +35,5 @@ namespace BLL.Services
 			Stock stock = _mapper.Map<Stock>(stockEntity);
 			return stock;
 		}
-
-		
 	}
 }

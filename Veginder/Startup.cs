@@ -35,10 +35,11 @@ namespace Veginder
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<VeginderDbContext>(opt =>
-				{ 
-					opt.UseLazyLoadingProxies();
-					opt.UseSqlServer(Configuration.GetConnectionString("VeginderDatabase"));
-				});
+			{
+				opt.UseLazyLoadingProxies();
+				opt.UseSqlServer(Configuration.GetConnectionString("VeginderDatabase"));
+			});
+
 			services.AddScoped<IRepository<AddressEntity>, Repository<AddressEntity>>();
 			services.AddScoped<IRepository<OrderEntity>, Repository<OrderEntity>>();
 			services.AddScoped<IRepository<ProductCategoryEntity>, Repository<ProductCategoryEntity>>();

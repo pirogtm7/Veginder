@@ -21,7 +21,7 @@ namespace DAL
 
 		public VeginderDbContext(DbContextOptions<VeginderDbContext> options) : base(options)
 		{
-			//VeginderDbInitializer.Initialize(this);
+			VeginderDbInitializer.Initialize(this);
 		}
 	}
 }
