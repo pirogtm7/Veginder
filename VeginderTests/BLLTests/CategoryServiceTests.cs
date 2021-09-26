@@ -61,7 +61,7 @@ namespace VeginderTests.BLLTests
 
 			for (int i = 0; i < expectedfullList.Count; i++)
 			{
-				Assert.AreEqual(expectedfullList[0].Name, actual[0].Name);
+				Assert.AreEqual(expectedfullList[i].Name, actual[i].Name);
 			}
 		}
 

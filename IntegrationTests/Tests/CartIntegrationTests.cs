@@ -58,7 +58,7 @@ namespace IntegrationTests.Tests
             var cart = JsonConvert.DeserializeObject<CartModel>(stringResponse);
 
             // Assert
-            cart.Items.Count.Should().Be(1);
+            cart.Items.Count.Should().Be(3);
         }
 
     }
